@@ -29,14 +29,16 @@
     <!-- Search bar -->
     <div class="search-bar">
         <img src="logo.png" class="search-logo" alt="logo">
-        <input type="text" placeholder="Search for styles, brands & more">
+        <input type="text" placeholder="Search for styles, brands & more" onclick="goToSearch()" readonly>
     </div>
 
     <div class="location-bar">
     <i class="ri-map-pin-line"></i>
     <span>Select delivery location</span>
     <i class="ri-arrow-right-s-line"></i>
+   
 </div>
+
 </nav>
 
 <!-- Horizontal Scroll -->
@@ -85,6 +87,7 @@
     <span class="dot"></span>
 </div>
 
+
 <script>
 const slider = document.getElementById("slider");
 const slides = slider.querySelectorAll("img");
@@ -105,6 +108,10 @@ setInterval(() => {
 }, 4000);
 </script>
 
-
+<script>
+function goToSearch() {
+    window.location.href = "search.html";
+}
+</script>
 </body>
 </html>

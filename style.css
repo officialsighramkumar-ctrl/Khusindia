@@ -186,3 +186,50 @@ body {
 height: 200px;   /* desktop ke liye bada */
 animation: slide 18s infinite;
 
+.search-page {
+    padding: 15px;
+}
+
+.search-top input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+}
+
+.history {
+    margin-top: 20px;
+}
+
+.history li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+.search-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    pointer-events: none; /* 🔥 important */
+}
+
+.history li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.history button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}

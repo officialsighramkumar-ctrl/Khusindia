@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="search-page">
+
+    <div class="search-top">
+        <input type="text" id="searchInput" placeholder="Search products..." onkeydown="handleSearch(event)">
+    </div>
+
+    <div class="history">
+        <h3>Recent Searches</h3>
+        <ul id="historyList"></ul>
+    </div>
+
+</div>
+
+<script>
+let history = JSON.parse(localStorage.getItem("searchHistory")) || [];
+
+// ENTER press → save search
+function handleSearch(event) {
+    if (event.key === "Enter") {
+        let value = event.target.value.trim();
+
+        if (value === "") return;
+
+        // duplicate remove (same search repeat na ho)
+        history = history.filter(item => item !== value);
+
+        // new search top pe
+        history.unshift(value);
+
+        // max 10 items → last remove
+        if (history.length > 10) {
+            history.pop();
+        }
+
+        // save
+        localStorage.setItem("searchHistory", JSON.stringify(history));
+
+        renderHistory();
+
+        event.target.value = "";
+    }
+}
+
+// delete specific item
+function deleteItem(index) {
+    history.splice(index, 1);
+    localStorage.setItem("searchHistory", JSON.stringify(history));
+    renderHistory();
+}
+
+// UI render
+function renderHistory() {
+    let list = document.getElementById("historyList");
+    if (!list) return;
+
+    list.innerHTML = "";
+
+    history.forEach((item, index) => {
+        let li = document.createElement("li");
+
+        li.innerHTML = `
+            <span>${item}</span>
+            <button onclick="deleteItem(${index})">✖</button>
+        `;
+
+        list.appendChild(li);
+    });
+}
+
+function useSearch(value) {
+    const input = document.getElementById("searchInput");
+    input.value = value;
+    input.focus();
+}
+
+// page load pe show
+window.onload = function () {
+    renderHistory();
+};
+</script>
+
+
+
+
+</body>
+</html>
