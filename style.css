@@ -1,0 +1,188 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body */
+body {
+    background: #f5f5f5;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+    background: #ffffff;
+    padding: 10px 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Top row */
+.nav-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Menu icon */
+.nav-top i {
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* Logo text center */
+.logo-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff3f6c;
+    letter-spacing: 1px;
+}
+
+/* Right icons */
+.nav-icons {
+    display: flex;
+    align-items: center;
+}
+
+.nav-icons i {
+    font-size: 20px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+/* ================= SEARCH BAR ================= */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #f1f1f1;
+    padding: 10px 12px;
+    border-radius: 12px;
+    margin-top: 12px;
+}
+
+/* 🔥 Logo inside search */
+.search-logo {
+    height: 26px;
+    width: 26px;
+    background: #ffffff;
+    padding: 4px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+/* Input */
+.search-bar input {
+    border: none;
+    outline: none;
+    background: transparent;
+    margin-left: 10px;
+    flex: 1;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Placeholder color */
+.search-bar input::placeholder {
+    color: #888;
+}
+/* Location bar */
+.location-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
+    padding: -1px 12px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    cursor: pointer;
+}
+
+/* Left side (icon + text) */
+.location-bar span {
+    flex: 1;
+    margin-left: 8px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Icons */
+.location-bar i {
+    font-size: 18px;
+    color: #555;
+}
+.location-bar {
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+/* Horizontal scroll container */
+.category-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding: 12px 10px;
+    margin-top: 10px;
+}
+
+/* Scrollbar hide (clean look) */
+.category-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+/* Each item */
+.category-item {
+    min-width: 70px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+/* Image */
+.category-item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #eee;
+}
+
+/* Text */
+.category-item p {
+    font-size: 12px;
+    margin-top: 5px;
+}
+.category-scroll {
+    scroll-behavior: smooth;
+}
+
+/* ================= BANNER SLIDER ================= */
+
+.banner-slider {
+    width: 100%;
+    overflow-x: auto;              /* manual scroll enable */
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory; /* snap effect */
+    scroll-behavior: smooth;       /* smooth scroll */
+}
+
+/* Hide scrollbar (optional clean look) */
+.banner-slider::-webkit-scrollbar {
+    display: none;
+}
+
+/* Track */
+.banner-track {
+    display: flex;
+}
+
+/* Each banner image */
+.banner-track img {
+    width: 100%;              /* ek time pe ek banner */
+    height: 180px;
+    object-fit: cover;
+    flex-shrink: 0;           /* shrink na ho */
+    scroll-snap-align: start; /* snap position */
+    border-radius: 10px;
+}
+height: 200px;   /* desktop ke liye bada */
+animation: slide 18s infinite;
+

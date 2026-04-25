@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khusindia</title>
+    <link rel="stylesheet" href="style.css">
+    
+
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+
+    <div class="nav-top">
+        <i class="ri-menu-line"></i>
+
+        <h2 class="logo-text">KHUSINDIA</h2>
+
+        <div class="nav-icons">
+            <i class="ri-heart-line"></i>
+            <i class="ri-shopping-bag-line"></i>
+        </div>
+    </div>
+
+    <!-- Search bar -->
+    <div class="search-bar">
+        <img src="images/logo.png" class="search-logo" alt="logo">
+        <input type="text" placeholder="Search for styles, brands & more">
+    </div>
+
+    <div class="location-bar">
+    <i class="ri-map-pin-line"></i>
+    <span>Select delivery location</span>
+    <i class="ri-arrow-right-s-line"></i>
+</div>
+</nav>
+
+<!-- Horizontal Scroll -->
+<div class="category-scroll">
+
+    <div class="category-item">
+        <img src="images/img1.png" alt="">
+        <p>Food</p>
+    </div>
+
+    <div class="category-item">
+        <img src="images/img2.png" alt="">
+        <p>Men</p>
+    </div>
+
+    <div class="category-item">
+        <img src="images/img3.png" alt="">
+        <p>Women</p>
+    </div>
+
+    <div class="category-item">
+        <img src="images/img4.png" alt="">
+        <p>Kids</p>
+    </div>
+
+    <div class="category-item">
+        <img src="images/img5.png" alt="">
+        <p>Electric</p>
+    </div>
+
+</div>
+
+<div class="banner-slider" id="slider">
+    <div class="banner-track">
+        <img src="images/banner1.jpg" alt="Banner 1">
+        <img src="images/banner2.jpg" alt="Banner 2">
+        <img src="images/banner3.jpg" alt="Banner 3">
+    </div>
+</div>
+
+</div>
+
+<div class="dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+</div>
+
+<script>
+const slider = document.getElementById("slider");
+const slides = slider.querySelectorAll("img");
+
+let index = 0;
+
+setInterval(() => {
+    index++;
+
+    if (index >= slides.length) {
+        index = 0;
+    }
+
+    slider.scrollTo({
+        left: slider.clientWidth * index,
+        behavior: "smooth"
+    });
+}, 4000);
+</script>
+
+
+</body>
+</html>
