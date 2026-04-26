@@ -192,8 +192,8 @@ animation: slide 18s infinite;
 
 .search-top input {
     width: 100%;
-    padding: 12px;
-    font-size: 16px;
+    padding: 16px 20px;
+    font-size: 18px;
 }
 
 .history {
