@@ -16,7 +16,7 @@
     <nav class="navbar">
 
     <div class="nav-top">
-        <i class="ri-menu-line"></i>
+        <i class="ri-menu-line" onclick="openMenu()"></i>
 
         <h2 class="logo-text">KHUSINDIA</h2>
 
@@ -111,6 +111,16 @@ setInterval(() => {
 <script>
 function goToSearch() {
     window.location.href = "search.html";
+}
+</script>
+
+    <script>
+function openMenu() {
+    document.getElementById("sideMenu").classList.add("active");
+}
+
+function closeMenu() {
+    document.getElementById("sideMenu").classList.remove("active");
 }
 </script>
 </body>
