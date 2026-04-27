@@ -3,71 +3,103 @@
 <head>
     <title>Search</title>
     <link rel="stylesheet" href="style.css">
+
+    <!-- ICONS -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
 </head>
 
 <body>
 
 <div class="search-page">
 
-    <div class="search-top">
-        <input type="text" id="searchInput" placeholder="Search products..." onkeydown="handleSearch(event)">
+    <!-- 🔥 TOP HEADER -->
+    <div class="search-header">
+        <i class="ri-arrow-left-line back-btn"></i>
+
+        <input 
+            type="text" 
+            id="searchInput"
+            placeholder="Search for Products, Brands and More"
+        >
     </div>
 
-    <div class="history"
-        <ul id="historyList"></ul>
-    </div>
+    <!-- 🔥 HISTORY -->
+    <ul class="history" id="historyList"></ul>
 
 </div>
 
+
 <script>
+
+/* BACK BUTTON */
+document.querySelector(".back-btn").onclick = () => {
+    window.history.back();
+};
+
+
+/* DATA */
 let history = JSON.parse(localStorage.getItem("searchHistory")) || [];
+const input = document.getElementById("searchInput");
 
-// ENTER press → save search
-function handleSearch(event) {
+
+/* ENTER → SAVE */
+input.addEventListener("keydown", function (event) {
+
     if (event.key === "Enter") {
-        let value = event.target.value.trim();
 
-        if (value === "") return;
+        let value = input.value.trim();
+        if (!value) return;
 
-        // duplicate remove (same search repeat na ho)
+        // remove duplicate
         history = history.filter(item => item !== value);
 
-        // new search top pe
+        // add top
         history.unshift(value);
 
-        // max 10 items → last remove
+        // max 10
         if (history.length > 10) {
             history.pop();
         }
 
-        // save
         localStorage.setItem("searchHistory", JSON.stringify(history));
 
         renderHistory();
 
-        event.target.value = "";
+        input.value = "";
     }
-}
+});
 
-// delete specific item
+
+/* DELETE ITEM */
 function deleteItem(index) {
     history.splice(index, 1);
     localStorage.setItem("searchHistory", JSON.stringify(history));
     renderHistory();
 }
 
-// UI render
-function renderHistory() {
-    let list = document.getElementById("historyList");
-    if (!list) return;
 
+/* CLICK → USE SEARCH */
+function useSearch(value) {
+    input.value = value;
+    input.focus();
+}
+
+
+/* RENDER UI */
+function renderHistory() {
+
+    const list = document.getElementById("historyList");
     list.innerHTML = "";
 
     history.forEach((item, index) => {
+
         let li = document.createElement("li");
 
         li.innerHTML = `
-            <span>${item}</span>
+            <span onclick="useSearch('${item}')">${item}</span>
             <button onclick="deleteItem(${index})">✖</button>
         `;
 
@@ -75,20 +107,11 @@ function renderHistory() {
     });
 }
 
-function useSearch(value) {
-    const input = document.getElementById("searchInput");
-    input.value = value;
-    input.focus();
-}
 
-// page load pe show
-window.onload = function () {
-    renderHistory();
-};
+/* LOAD */
+window.onload = renderHistory;
+
 </script>
-
-
-
 
 </body>
 </html>
