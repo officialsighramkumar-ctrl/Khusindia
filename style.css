@@ -233,3 +233,43 @@ animation: slide 18s infinite;
     font-size: 16px;
     cursor: pointer;
 }
+
+.menu-icon {
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* sidebar */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -260px;
+    width: 260px;
+    height: 100%;
+    background: #fff;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    transition: 0.3s ease;
+    z-index: 9999;
+}
+
+.side-menu.active {
+    left: 0;
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.side-menu ul {
+    list-style: none;
+    padding: 10px;
+}
+
+.side-menu li {
+    padding: 12px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+}
