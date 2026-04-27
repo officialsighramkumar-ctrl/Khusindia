@@ -58,7 +58,7 @@ body {
     background: #f1f1f1;
     padding: 10px 12px;
     border-radius: 12px;
-    margin-top: 12px;
+    margin-top: 8px;
 }
 
 /* 🔥 Logo inside search */
@@ -216,7 +216,7 @@ animation: slide 18s infinite;
     padding: 10px;
     border: none;
     outline: none;
-    pointer-events: none; /* 🔥 important */
+    pointer-events: none; /*  important */
 }
 
 .history li {
@@ -234,42 +234,357 @@ animation: slide 18s infinite;
     cursor: pointer;
 }
 
-.menu-icon {
-    font-size: 22px;
-    cursor: pointer;
+/* OVERLAY */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    z-index: 999;
 }
 
-/* sidebar */
+/* SIDE MENU */
 .side-menu {
     position: fixed;
     top: 0;
-    left: -260px;
-    width: 260px;
+    left: -280px;
+    width: 280px;
     height: 100%;
     background: #fff;
-    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-    transition: 0.3s ease;
-    z-index: 9999;
+    z-index: 1000;
+    transition: 0.3s;
+    z-index: 1000;
+    overflow-y: auto;
 }
 
+/* OPEN STATE */
 .side-menu.active {
     left: 0;
 }
 
+.menu-overlay.active {
+    display: block;
+}
+
+/* side menu above overlay */
+.side-menu {
+    z-index: 1000;
+}
+.menu-overlay {
+    z-index: 999;
+}
+.user h3 {
+    color: rgb(248, 248, 250);
+}
+
+#username {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #fff;
+    letter-spacing: 0.3px;
+}
+
+
+
+
+/* HEADER */
 .menu-header {
+    background: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* USER ICON BOX */
+.user-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;   /* 🔥 important */
+    background: #fff;   /* optional */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* LOGO IMAGE */
+.user-icon img {
+    width: 80%;
+    height: 80%;
+    object-fit: cover;  /*  perfect fit */
+}
+
+
+/* ITEMS */
+.menu-items {
+    padding: 18px 20px;   /*  balanced left-right spacing */
+}
+/* EACH ITEM */
+.menu-items p {
+    margin: 14px 0;
+    font-size: 16px;
+    cursor: pointer;
+    padding-left: 8px;   /*  left se gap */
+    transition: 0.2s;
+}
+
+/* HOVER EFFECT (desktop feel) */
+.menu-items p:hover {
+    background: #f5f5f5;
+    border-radius: 6px;
+}
+
+/* DIVIDER */
+.menu-items hr {
+    margin: 12px 0;
+    border: none;
+    border-top: 1px solid #eee;
+}
+
+/* SELLER TEXT */
+.seller {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* FORCE DESKTOP LAYOUT FIX */
+@media (min-width: 768px) {
+
+    .category-section {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        overflow: hidden !important;
+
+        padding: 20px 40px !important;
+        gap: 20px !important;
+        background: #fff;
+    }
+
+    .category-item {
+        flex: 1 !important;
+        text-align: center;
+    }
+
+    .category-item img {
+        width: 80% !important;
+        max-width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 6px;
+    }
+
+    .category-item p {
+        margin-top: 8px;
+        font-size: 14px;
+    }
+}
+
+/* ===== DEFAULT ===== */
+.nav-desktop {
+    display: none;
+}
+
+/* ===== DESKTOP ONLY ===== */
+@media (min-width: 768px) {
+
+    .nav-mobile {
+        display: none;
+    }
+
+    .nav-desktop {
+        display: block;
+        background: #8b004f;
+        color: #fff;
+        padding: 10px 20px;
+    }
+
+    /* TOP */
+    .nav-top-desktop {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .desktop-logo {
+        width: 80px;
+    }
+
+    /* SEARCH */
+    .desktop-search {
+        flex: 1;
+        max-width: 500px;
+        display: flex;
+        align-items: center;
+        background: #eee;
+        border-radius: 10px;
+        padding: 8px 12px;
+        color: #333;
+    }
+
+    .desktop-search input {
+        flex: 1;
+        border: none;
+        outline: none;
+        background: transparent;
+        padding: 0 8px;
+    }
+
+    /* RIGHT */
+    .desktop-right {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .seller {
+        text-align: right;
+        font-size: 12px;
+    }
+
+    /* BOTTOM */
+    .nav-bottom-desktop {
+        margin-top: 10px;
+        display: flex;
+        gap: 30px;
+        background: #a1005c;
+        padding: 10px 15px;
+        border-radius: 8px;
+    }
+}
+
+.desktop-search {
+    position: relative;
+}
+
+/* DROPDOWN BOX */
+.search-history {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 100%;
+    max-width: 500px;
+
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+    display: none;
+    z-index: 1000;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+/* ITEM ROW */
+.history-item {
     display: flex;
     justify-content: space-between;
-    padding: 15px;
+    align-items: center;
+
+    padding: 10px 12px;
     border-bottom: 1px solid #eee;
-}
-
-.side-menu ul {
-    list-style: none;
-    padding: 10px;
-}
-
-.side-menu li {
-    padding: 12px;
-    border-bottom: 1px solid #f0f0f0;
     cursor: pointer;
+}
+
+.history-item:hover {
+    background: #f5f5f5;
+}
+
+/* DELETE BUTTON */
+.history-item span {
+    color: red;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+
+
+
+
+/* =========================
+   BASE MENU (COMMON)
+========================= */
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    width: 280px;
+
+    background: #fff;
+    transition: 0.3s;
+    z-index: 1000;
+
+    overflow-y: auto;
+    max-height: 100vh;
+}
+
+/* =========================
+   MOBILE DEFAULT (HIDDEN LEFT)
+========================= */
+
+@media (max-width: 767px) {
+
+    .side-menu {
+        left: -280px;
+        height: 100vh;   /* 🔥 mobile full screen */
+    }
+
+    .side-menu.active {
+        left: 0;
+    }
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0,0,0,0.4);
+
+    display: none;
+    z-index: 999;
+}
+
+.menu-overlay.active {
+    display: block;
+}
+
+
+/* =========================
+   DESKTOP VERSION (RIGHT SIDE)
+========================= */
+
+@media (min-width: 768px) {
+
+    .side-menu {
+        right: -300px;
+        left: auto;
+
+        height: auto;      /*  desktop auto */
+        max-height: 90vh;  /* safe scroll */
+    }
+
+    .side-menu.active {
+        right: 0;
+        left: auto;
+    }
 }
