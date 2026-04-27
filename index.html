@@ -4,141 +4,215 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Khusindia</title>
-    <link rel="stylesheet" href="style.css">
-    
 
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- Icons -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
 </head>
+
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar">
+<!-- NAVBAR -->
+<nav class="navbar">
 
-    <div class="nav-top">
-        <i class="ri-menu-line" onclick="openMenu()"></i>
+    <!-- 🔴 MOBILE NAV -->
+    <div class="nav-mobile">
 
-        <h2 class="logo-text">KHUSINDIA</h2>
+        <div class="nav-top">
+            <i class="ri-menu-line" onclick="openMenu()"></i>
 
-        <div class="nav-icons">
-            <i class="ri-heart-line"></i>
-            <i class="ri-shopping-bag-line"></i>
+            <h2 class="logo-text">KHUSINDIA</h2>
+
+            <div class="nav-icons">
+                <i class="ri-heart-line"></i>
+                <i class="ri-shopping-bag-line"></i>
+            </div>
         </div>
+
+        <!-- Search bar -->
+       <div class="search-bar" onclick="goToSearch()">
+       <img src="logo.png" class="search-logo" alt="">
+        <input type="text" placeholder="Search for styles, brands & more" readonly>
+       </div>
+
+        <!-- Location -->
+        <div class="location-bar">
+            <i class="ri-map-pin-line"></i>
+            <span>Select delivery location</span>
+            <i class="ri-arrow-right-s-line"></i>
+        </div>
+
     </div>
 
-    <!-- Search bar -->
-    <div class="search-bar">
-        <img src="logo.png" class="search-logo" alt="logo">
-        <input type="text" placeholder="Search for styles, brands & more" onclick="goToSearch()" readonly>
-    </div>
 
-    <div class="location-bar">
-    <i class="ri-map-pin-line"></i>
-    <span>Select delivery location</span>
-    <i class="ri-arrow-right-s-line"></i>
-   
-</div>
+    <!-- 🟣 DESKTOP NAV -->
+    <div class="nav-desktop">
+
+        <!-- TOP ROW -->
+        <div class="nav-top-desktop">
+
+            <img src="logo.png" class="desktop-logo">
+
+            <div class="desktop-search">
+                <i class="ri-search-line"></i>
+                <input type="text" placeholder="Search for products, styles, brand">
+                <i class="ri-mic-line"></i>
+            </div>
+
+    
+            <div class="desktop-right">
+                <div class="seller">
+                    <p>Become a seller</p>
+                    <b>Join Now</b>
+                </div>
+
+                <i class="ri-user-line"></i>
+                <i class="ri-more-2-fill" onclick="openMenu()"></i>
+                
+            </div>
+
+        </div>
+
+        <!-- BOTTOM ROW -->
+        <div class="nav-bottom-desktop">
+            <p>Shop By Brand <i class="ri-arrow-down-s-line"></i></p>
+            <p>Shop By Categories <i class="ri-arrow-down-s-line"></i></p>
+            <p>Buy Now</p>
+        </div>
+
+    </div>
 
 </nav>
-
-<!-- Horizontal Scroll -->
+<!-- CATEGORY -->
 <div class="category-scroll">
 
     <div class="category-item">
-        <img src="img1.png" alt="">
+        <img src="img1.png">
         <p>Food</p>
     </div>
 
     <div class="category-item">
-        <img src="img2.png" alt="">
+        <img src="img2.png">
         <p>Men</p>
     </div>
 
     <div class="category-item">
-        <img src="img3.png" alt="">
+        <img src="img3.png">
         <p>Women</p>
     </div>
 
     <div class="category-item">
-        <img src="img4.png" alt="">
+        <img src="img4.png">
         <p>Kids</p>
     </div>
 
     <div class="category-item">
-        <img src="img5.png" alt="">
+        <img src="img5.png">
         <p>Electric</p>
     </div>
 
 </div>
 
+<!-- BANNER -->
 <div class="banner-slider" id="slider">
     <div class="banner-track">
-        <img src="banner1.jpg" alt="Banner 1">
-        <img src="banner2.jpg" alt="Banner 2">
-        <img src="banner3.jpg" alt="Banner 3">
+        <img src="banner1.jpg">
+        <img src="banner2.jpg">
+        <img src="banner3.jpg">
     </div>
 </div>
 
-</div>
-
+<!-- DOTS -->
 <div class="dots">
     <span class="dot active"></span>
     <span class="dot"></span>
     <span class="dot"></span>
 </div>
 
-    <div class="side-menu" id="sideMenu">
+<!-- SIDE MENU -->
+<div class="side-menu" id="sideMenuMobile">
 
+    <!-- TOP USER -->
     <div class="menu-header">
-        <span>Menu</span>
-        <button onclick="closeMenu()">✖</button>
+        <div class="user">
+            <div class="user-icon">
+                <img src="logo.png" alt="logo">
+            </div>
+            <h3 id="username">KHUS INDIA</h3>
+        </div>
     </div>
 
-    <ul>
-        <li>Men</li>
-        <li>Women</li>
-        <li>Kids</li>
-        <li>Beauty</li>
-        <li>Home</li>
-    </ul>
+    <!-- MENU ITEMS -->
+    <div class="menu-items">
+
+        <p>Shop By Categories</p>
+        <p>Shop By Brand</p>
+
+        <hr>
+
+        <p>Notifications</p>
+        <p>Choose Language</p>
+        <p>Offer Zone</p>
+
+        <hr>
+
+        <p>My Orders</p>
+        <p>My Cart</p>
+        <p>My Wishlist</p>
+
+        <hr>
+
+        <p>My Account</p>
+        <p>Help Center</p>
+        <p>About us</p>
+        <p>Legal</p>
+
+        <hr>
+
+        <p class="seller">Become A Khusindia Seller</p>
+
+    </div>
 
 </div>
 
+<!-- DESKTOP MENU OVERLAY -->
+<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
 
-<script>
-const slider = document.getElementById("slider");
-const slides = slider.querySelectorAll("img");
+<!-- DESKTOP SIDE MENU -->
+<div class="side-menu" id="sideMenuDesktop">
 
-let index = 0;
+    <div class="menu-header">
+        <div class="user">
+            <div class="user-icon">
+                <img src="logo.png" alt="">
+            </div>
+            <h3 id="username">KHUSINDIA</h3>
+        </div>
+    </div>
 
-setInterval(() => {
-    index++;
+    <div class="menu-items">
 
-    if (index >= slides.length) {
-        index = 0;
-    }
+        <p>Notifications</p>
+        <p>Help Center</p>
+        <p>Choose Language</p>
+        <p>My Wishlist</p>
+        <p>My Cart</p>
 
-    slider.scrollTo({
-        left: slider.clientWidth * index,
-        behavior: "smooth"
-    });
-}, 4000);
-</script>
+        <!-- LOGIN BASED -->
+        <p id="myOrders" style="display:none;">My Orders</p>
 
-<script>
-function goToSearch() {
-    window.location.href = "search.html";
-}
-</script>
+        <p>About Us</p>
+        <p>Legal</p>
 
-    <script>
-function openMenu() {
-    document.getElementById("sideMenu").classList.add("active");
-}
+        <hr>
 
-function closeMenu() {
-    document.getElementById("sideMenu").classList.remove("active");
-}
-</script>
+    </div>
+
+</div>
+
+<!-- JS FILE LINK -->
+<script src="script.js"></script>
+
 </body>
 </html>
