@@ -27,6 +27,7 @@
             <div class="nav-icons">
                 <i class="ri-heart-line"></i>
                 <i class="ri-shopping-bag-line"></i>
+                <span class="mobile-login">Login</span>
             </div>
         </div>
 
@@ -36,7 +37,48 @@
         <input type="text" placeholder="Search for styles, brands & more" readonly>
        </div>
 
-        <!-- Location -->
+</div>
+
+
+    <!-- 🟣 DESKTOP NAV -->
+    <div class="nav-desktop">
+
+        <!-- TOP ROW -->
+<div class="nav-top-desktop">
+
+    <img src="logo.png" class="desktop-logo">
+
+    <div class="desktop-search">
+        <i class="ri-search-line"></i>
+        <input type="text" placeholder="Search for products, styles, brand">
+        <i class="ri-mic-line"></i>
+    </div>
+
+    <!-- RIGHT SIDE MUST BE INSIDE -->
+    <div class="desktop-right">
+
+        <div class="seller">
+            <p>Become a seller</p>
+            <b>Join Now</b>
+        </div>
+
+        <i class="ri-user-line"></i>
+        <i class="ri-more-2-fill" onclick="openMenu()"></i>
+
+    </div>
+
+</div>
+
+
+        <!-- BOTTOM ROW -->
+        <div class="nav-bottom-desktop">
+            <p>Shop By Brand <i class="ri-arrow-down-s-line"></i></p>
+            <p>Shop By Categories <i class="ri-arrow-down-s-line"></i></p>
+        </div>
+
+    </div>
+
+    <!-- Location -->
         <div class="location-bar">
             <i class="ri-map-pin-line"></i>
             <span>Select delivery location</span>
@@ -45,45 +87,8 @@
 
     </div>
 
-
-    <!-- 🟣 DESKTOP NAV -->
-    <div class="nav-desktop">
-
-        <!-- TOP ROW -->
-        <div class="nav-top-desktop">
-
-            <img src="logo.png" class="desktop-logo">
-
-            <div class="desktop-search">
-                <i class="ri-search-line"></i>
-                <input type="text" placeholder="Search for products, styles, brand">
-                <i class="ri-mic-line"></i>
-            </div>
-
-    
-            <div class="desktop-right">
-                <div class="seller">
-                    <p>Become a seller</p>
-                    <b>Join Now</b>
-                </div>
-
-                <i class="ri-user-line"></i>
-                <i class="ri-more-2-fill" onclick="openMenu()"></i>
-                
-            </div>
-
-        </div>
-
-        <!-- BOTTOM ROW -->
-        <div class="nav-bottom-desktop">
-            <p>Shop By Brand <i class="ri-arrow-down-s-line"></i></p>
-            <p>Shop By Categories <i class="ri-arrow-down-s-line"></i></p>
-            <p>Buy Now</p>
-        </div>
-
-    </div>
-
 </nav>
+
 <!-- CATEGORY -->
 <div class="category-scroll">
 
@@ -115,20 +120,18 @@
 </div>
 
 <!-- BANNER -->
-<div class="banner-slider" id="slider">
-    <div class="banner-track">
+<div class="banner-slider">
+    
+    <div class="banner-track" id="bannerTrack">
         <img src="banner1.jpg">
         <img src="banner2.jpg">
         <img src="banner3.jpg">
     </div>
+
 </div>
 
 <!-- DOTS -->
-<div class="dots">
-    <span class="dot active"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-</div>
+<div class="dots" id="dots"></div>
 
 <!-- SIDE MENU -->
 <div class="side-menu" id="sideMenuMobile">
@@ -211,7 +214,7 @@
 
 </div>
 
-    <div class="product-container">
+<div class="product-container">
 
   <!-- Product 1 -->
   <div class="product-card">
@@ -334,6 +337,10 @@
   </div>
   
 </div>
+
+<div id="productContainer"></div>
+
+
 
 <!-- JS FILE LINK -->
 <script src="script.js"></script>
