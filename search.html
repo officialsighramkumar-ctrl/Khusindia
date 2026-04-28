@@ -6,10 +6,24 @@
 
     <!-- ICONS -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
 </head>
+
+<body>
+
+<div class="search-page">
+
+    <!-- TOP SEARCH BAR (sticky feel) -->
+    <div class="search-top">
+        <i class="ri-arrow-left-line" onclick="history.back()"></i>
+
+        <input type="text" id="searchInput" placeholder="Search for styles, brands & more">
+    </div>
+
+    <!-- HISTORY -->
+    <ul id="historyList" class="history"></ul>
+
+</div>
 
 <body>
 
@@ -31,46 +45,56 @@
 
 </div>
 
-
 <script>
+/* =========================
+   BACK BUTTON (SAFE)
+========================= */
+document.addEventListener("DOMContentLoaded", function () {
 
-/* BACK BUTTON */
-document.querySelector(".back-btn").onclick = () => {
-    window.history.back();
-};
+    const backBtn = document.querySelector(".back-btn");
+
+    if (backBtn) {
+        backBtn.addEventListener("click", function () {
+            window.history.back();
+            console.log("back clicked");
+        });
+    }
+
+});
 
 
-/* DATA */
+/* =========================
+   SEARCH HISTORY SYSTEM
+========================= */
+
 let history = JSON.parse(localStorage.getItem("searchHistory")) || [];
 const input = document.getElementById("searchInput");
 
 
 /* ENTER → SAVE */
-input.addEventListener("keydown", function (event) {
+if (input) {
+    input.addEventListener("keydown", function (event) {
 
-    if (event.key === "Enter") {
+        if (event.key === "Enter") {
 
-        let value = input.value.trim();
-        if (!value) return;
+            let value = input.value.trim();
+            if (!value) return;
 
-        // remove duplicate
-        history = history.filter(item => item !== value);
+            history = history.filter(item => item !== value);
+            history.unshift(value);
 
-        // add top
-        history.unshift(value);
+            if (history.length > 10) {
+                history.pop();
+            }
 
-        // max 10
-        if (history.length > 10) {
-            history.pop();
+            localStorage.setItem("searchHistory", JSON.stringify(history));
+
+            renderHistory();
+
+            input.value = "";
         }
-
-        localStorage.setItem("searchHistory", JSON.stringify(history));
-
-        renderHistory();
-
-        input.value = "";
-    }
-});
+    });
+}
 
 
 /* DELETE ITEM */
@@ -81,17 +105,20 @@ function deleteItem(index) {
 }
 
 
-/* CLICK → USE SEARCH */
+/* CLICK SEARCH */
 function useSearch(value) {
+    if (!input) return;
     input.value = value;
     input.focus();
 }
 
 
-/* RENDER UI */
+/* RENDER */
 function renderHistory() {
 
     const list = document.getElementById("historyList");
+    if (!list) return;
+
     list.innerHTML = "";
 
     history.forEach((item, index) => {
@@ -108,10 +135,9 @@ function renderHistory() {
 }
 
 
-/* LOAD */
-window.onload = renderHistory;
-
-</script>
+/* INIT */
+window.addEventListener("load", renderHistory);
+ </script>
 
 </body>
 </html>
