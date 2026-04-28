@@ -12,10 +12,20 @@ body {
 }
 
 /* ================= NAVBAR ================= */
+
+.nav-bottom-desktop {
+    display: none;
+}
 .navbar {
     background: #ffffff;
     padding: 10px 12px;
+
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+
+    /* 🔥 FIXED TOP NAVBAR */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 /* Top row */
@@ -31,12 +41,21 @@ body {
     cursor: pointer;
 }
 
+.mobile-login {
+    font-size: 14px;
+    margin-left: 10px;
+    cursor: pointer;
+    color: #333;
+    font-weight: 500;
+}
+
 /* Logo text center */
 .logo-text {
     font-size: 18px;
     font-weight: bold;
     color: #ff3f6c;
     letter-spacing: 1px;
+    margin-left: -55px;
 }
 
 /* Right icons */
@@ -92,7 +111,7 @@ body {
     align-items: center;
     justify-content: space-between;
     background: #ffffff;
-    padding: -1px 12px;
+    padding: 1px 12px;
     margin-top: 10px;
     border-radius: 10px;
     border: 1px solid #eee;
@@ -154,37 +173,99 @@ body {
     scroll-behavior: smooth;
 }
 
-/* ================= BANNER SLIDER ================= */
+/* =========================
+   BANNER TRACK
+========================= */
 
 .banner-slider {
     width: 100%;
-    overflow-x: auto;              /* manual scroll enable */
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory; /* snap effect */
-    scroll-behavior: smooth;       /* smooth scroll */
+    overflow: hidden;
 }
 
-/* Hide scrollbar (optional clean look) */
-.banner-slider::-webkit-scrollbar {
+.banner-track {
+    display: flex;
+
+    overflow-x: auto;          /* 🔥 allow scroll */
+    scroll-snap-type: x mandatory;
+
+    scroll-behavior: smooth;
+
+    -webkit-overflow-scrolling: touch; /* mobile smooth */
+}
+
+/* hide scrollbar */
+.banner-track::-webkit-scrollbar {
     display: none;
 }
 
-/* Track */
-.banner-track {
-    display: flex;
+.banner-track img {
+    width: 100%;
+    flex-shrink: 0;
+
+    height: 200px;
+    object-fit: cover;
+
+    scroll-snap-align: start;
 }
 
-/* Each banner image */
 .banner-track img {
-    width: 100%;              /* ek time pe ek banner */
-    height: 180px;
+    width: 100%;
+    flex-shrink: 0;
+    height: 200px;
     object-fit: cover;
-    flex-shrink: 0;           /* shrink na ho */
-    scroll-snap-align: start; /* snap position */
     border-radius: 10px;
 }
-height: 200px;   /* desktop ke liye bada */
-animation: slide 18s infinite;
+
+/* DOTS */
+.dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 5px;
+}
+
+.dots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #bbb;
+    transition: 0.3s;
+}
+
+.dots span.active {
+    background: #ff3f6c;
+    transform: scale(1.2);
+}
+
+/* =========================
+   BANNER (MOBILE DEFAULT)
+========================= */
+
+.banner-track img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    border-radius: 10px;
+}
+
+/* =========================
+   DESKTOP FIX
+========================= */
+
+@media (min-width: 768px) {
+    .banner-track img {
+        height: 350px;        /* 🔥 increase for desktop */
+        object-fit: contain;  /* 🔥 IMPORTANT: no cropping */
+        background: #fff;     /* empty space clean look */
+    }
+}
+
+
+/* =========================
+   SEARCH PAGE
+========================= */
 
 .search-page {
     padding: 15px;
@@ -192,46 +273,86 @@ animation: slide 18s infinite;
 
 .search-top input {
     width: 100%;
-    padding: 16px 20px;
+    padding: 14px 16px;
     font-size: 18px;
 }
 
-.history {
-    margin-top: 20px;
+
+/* =========================
+   SEARCH BOX
+========================= */
+
+.search-page {
+    width: 100%;
+    min-height: 100vh;
+
+    background: #fff;
+    padding: 0;
 }
 
-.history li {
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
-}
-.search-box {
-    width: 100%;
+/* TOP BAR */
+.search-top {
     display: flex;
     align-items: center;
-    cursor: pointer;
+    gap: 10px;
+
+    padding: 0px;
+    border-bottom: 1px solid #eee;
+
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 100;
 }
 
-.search-box input {
+.search-top i {
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+}
+
+.search-top input {
     width: 100%;
-    padding: 10px;
     border: none;
     outline: none;
-    pointer-events: none; /*  important */
+
+    font-size: 18px;
+}
+
+/* TITLE */
+.history-title {
+    padding: 12px;
+    font-size: 12px;
+    color: #888;
+}
+
+/* HISTORY */
+.history {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .history li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
+
+    padding: 14px 12px;
+    border-bottom: 1px solid #f0f0f0;
+
+    font-size: 14px;
+}
+
+.history li span {
+    flex: 1;
 }
 
 .history button {
     background: none;
     border: none;
     font-size: 16px;
-    cursor: pointer;
+    color: #999;
 }
 
 /* OVERLAY */
@@ -287,8 +408,6 @@ animation: slide 18s infinite;
     color: #fff;
     letter-spacing: 0.3px;
 }
-
-
 
 
 /* HEADER */
@@ -421,17 +540,23 @@ animation: slide 18s infinite;
         width: 80px;
     }
 
+
     /* SEARCH */
     .desktop-search {
-        flex: 1;
-        max-width: 500px;
-        display: flex;
-        align-items: center;
-        background: #eee;
-        border-radius: 10px;
-        padding: 8px 12px;
-        color: #333;
-    }
+    flex: 1;
+    max-width: 500px;
+
+    display: flex;
+    align-items: center;
+
+    margin: 0 20px;   /*  center but stable (auto se better in flex row) */
+
+    background: #eee;
+    border-radius: 10px;
+
+    padding: 8px 12px;
+    color: #333;
+}
 
     .desktop-search input {
         flex: 1;
@@ -455,13 +580,22 @@ animation: slide 18s infinite;
 
     /* BOTTOM */
     .nav-bottom-desktop {
-        margin-top: 10px;
-        display: flex;
-        gap: 30px;
-        background: #a1005c;
-        padding: 10px 15px;
-        border-radius: 8px;
-    }
+    margin-top: 10px;
+    display: flex;
+    gap: 30px;
+
+    background: #a1005c;
+    border-radius: 8px;
+
+    padding: 10px 15px;
+
+    /* 🔥 text white */
+    color: #fff;
+}
+
+/* all items white */
+.nav-bottom-desktop * {
+    color: #fff !important;
 }
 
 .desktop-search {
@@ -507,11 +641,6 @@ animation: slide 18s infinite;
     cursor: pointer;
     font-weight: bold;
 }
-
-
-
-
-
 
 /* =========================
    BASE MENU (COMMON)
@@ -599,8 +728,18 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
+  margin-top: 15px;
   padding: 10px;
 }
+
+/* Desktop ke liye */
+@media (min-width: 768px) {
+  .product-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+
 
 .product-card {
   background: #fff;
