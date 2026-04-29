@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Categories</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f1f3f6;
+}
+
+.app {
+    max-width: 420px;
+    margin: auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.header p {
+    margin: 0;
+    font-weight: bold;
+}
+
+/* MAIN */
+.container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* LEFT */
+.left {
+    width: 90px;
+    background: #fff;
+    border-right: 1px solid #eee;
+    overflow-y: auto;
+}
+
+.tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 5px;
+    border-bottom: 1px solid #eee;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.tab.active {
+    background: #eef4ff;
+    color: #2874f0;
+    font-weight: bold;
+}
+
+.left-circle {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #ddd;
+    margin-bottom: 5px;
+}
+
+/* RIGHT */
+.right {
+    flex: 1;
+    padding: 8px;
+    overflow-y: auto;
+}
+
+.title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+/* SECTION TITLE */
+.section-title {
+    font-size: 13px;
+    font-weight: 600;
+    margin: 8px 0 4px;
+    color: #333;
+}
+
+/* 🔥 HORIZONTAL SCROLL FIX */
+.section-grid {
+    display: flex;
+    flex-wrap: nowrap;          /* 🔥 NO WRAP (main fix) */
+    gap: 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 6px;
+}
+
+/* hide scrollbar */
+.section-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.row {
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+    padding-bottom: 8px;
+}
+
+.row::-webkit-scrollbar {
+    display: none;
+}
+
+.card {
+    flex: 0 0 auto;
+    width: 70px;
+    text-align: center;
+}
+
+/* ICON */
+.right-circle {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #ddd;
+    margin: 0 auto;
+}
+
+/* TEXT */
+.card p {
+    font-size: 11px;
+    margin-top: 4px;
+    margin-bottom: 0;
+    color: #333;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- HEADER -->
+    <div class="header">
+        <span onclick="history.back()">←</span>
+        <p>All Categories</p>
+        <span>⋮</span>
+    </div>
+
+    <!-- MAIN -->
+    <div class="container">
+
+        <!-- LEFT PANEL -->
+        <div class="left">
+
+            <div class="tab active" data-cat="foryou">
+                <div class="left-circle"></div>
+                <span>For You</span>
+            </div>
+
+            <div class="tab" data-cat="fashion">
+                <div class="left-circle"></div>
+                <span>Fashion</span>
+            </div>
+
+            <div class="tab" data-cat="electronics">
+                <div class="left-circle"></div>
+                <span>Electronics</span>
+            </div>
+
+            <div class="tab" data-cat="dryfruits">
+                <div class="left-circle"></div>
+                <span>Dry Fruits</span>
+            </div>
+
+        </div>
+
+        <!-- RIGHT PANEL -->
+        <div class="right">
+
+            <!-- DYNAMIC TITLE -->
+            <div class="title" id="categoryTitle">For You</div>
+
+            <!-- 🔥 IMPORTANT: EMPTY CONTAINER (JS fill karega) -->
+            <div id="productGrid"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const data = {
+
+        foryou: {
+            "Trending": ["Top Deals", "Best Picks", "New Arrivals"],
+            "Recommended": ["For You", "Popular Items"]
+        },
+
+        fashion: {
+            "Men": ["Casual Wear", "Formal Wear", "Sportswear", "Trendy"],
+            "Women": ["Ethnic", "Western", "Footwear", "Accessories"],
+            "Kids": ["Boys", "Girls", "Babywear"],
+            "Essentials": ["Watches", "Bags", "Sunglasses"]
+        },
+
+        electronics: {
+            "Mobiles": ["iPhone", "Android", "Budget Phones"],
+            "Appliances": ["TV", "Fridge", "Washing Machine"],
+            "Accessories": ["Headphones", "Speakers", "Smartwatch"]
+        },
+
+        dryfruits: {
+            "Popular": ["Almonds", "Cashew", "Raisins"],
+            "Premium": ["Pistachio", "Dates", "Walnuts"]
+        }
+
+    };
+
+    const tabs = document.querySelectorAll(".tab");
+    const grid = document.getElementById("productGrid");
+    const title = document.getElementById("categoryTitle");
+
+    let currentCategory = "";
+
+    function renderItems(category) {
+
+        if (!data[category]) return;
+
+        currentCategory = category;
+        grid.innerHTML = "";
+
+        const sections = data[category];
+
+        for (let section in sections) {
+
+            // 🔥 section title
+            grid.innerHTML += `<div class="section-title">${section}</div>`;
+
+            // 🔥 ROW (IMPORTANT – horizontal layout)
+            let row = `<div class="row">`;
+
+            sections[section].forEach(item => {
+                row += `
+                    <div class="card">
+                        <div class="right-circle"></div>
+                        <p>${item}</p>
+                    </div>
+                `;
+            });
+
+            row += `</div>`;
+
+            grid.innerHTML += row;
+        }
+
+        title.innerText = category.toUpperCase();
+    }
+
+    tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+
+            const category = tab.getAttribute("data-cat");
+
+            if (category === currentCategory) return;
+
+            tabs.forEach(t => t.classList.remove("active"));
+            tab.classList.add("active");
+
+            renderItems(category);
+        });
+    });
+
+    // default load
+    renderItems("foryou");
+
+});
+</script>
+</body>
+</html>
