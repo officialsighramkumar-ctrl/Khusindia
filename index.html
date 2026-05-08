@@ -147,76 +147,80 @@
     </div>
 
     <!-- MENU ITEMS -->
-    <div class="menu-items">
+<div class="menu-items">
 
-       <p onclick="openCategory()">Shop By Categories</p>
-        <p>Shop By Brand</p>
+    <!-- SHOP BY CATEGORIES -->
+    <p id="lang-categories"
+    onclick="window.location.href='categories.html'">
 
-        <hr>
+        Shop By Categories
 
-        <p>Notifications</p>
-        <p>Choose Language</p>
-        <p>Offer Zone</p>
+    </p>
 
-        <hr>
+    <!-- SHOP BY BRAND -->
+    <p id="lang-brands"
+    onclick="window.location.href='brands.html'">
 
-        <p>My Orders</p>
-        <p>My Cart</p>
-        <p>My Wishlist</p>
+        Shop By Brand
 
-        <hr>
+    </p>
 
-        <p>My Account</p>
-        <p>Help Center</p>
-        <p>About us</p>
-        <p>Legal</p>
+    <hr>
 
-        <hr>
+    <!-- NOTIFICATIONS -->
+    <p id="lang-notifications"
+    onclick="window.location.href='notification.html'">
 
-        <p class="seller">Become A Khusindia Seller</p>
+        Notifications
 
-    </div>
+    </p>
+
+    <!-- LANGUAGE -->
+    <p id="lang-language"
+    onclick="window.location.href='language.html'">
+
+        Choose Language
+
+    </p>
+
+    <!-- OFFER -->
+    <p>Offer Zone</p>
+
+    <hr>
+
+    <!-- ORDERS -->
+    <p id="lang-orders">
+        My Orders
+    </p>
+
+    <!-- CART -->
+    <p id="lang-cart">
+        My Cart
+    </p>
+
+    <!-- WISHLIST -->
+    <p id="lang-wishlist">
+        My Wishlist
+    </p>
+
+    <hr>
+
+    <p>My Account</p>
+    <p>Help Center</p>
+    <p>About us</p>
+    <p>Legal</p>
+
+    <hr>
+
+    <p class="seller">
+        Become A Khusindia Seller
+    </p>
 
 </div>
-
-<!-- DESKTOP MENU OVERLAY -->
-<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
-
-<!-- DESKTOP SIDE MENU -->
-<div class="side-menu" id="sideMenuDesktop">
-
-    <div class="menu-header">
-        <div class="user">
-            <div class="user-icon">
-                <img src="logo.png" alt="">
-            </div>
-            <h3 id="username">KHUSINDIA</h3>
-        </div>
-    </div>
-
-    <div class="menu-items">
-
-        <p>Notifications</p>
-        <p>Help Center</p>
-        <p>Choose Language</p>
-        <p>My Wishlist</p>
-        <p>My Cart</p>
-
-        <!-- LOGIN BASED -->
-        <p id="myOrders" style="display:none;">My Orders</p>
-
-        <p>About Us</p>
-        <p>Legal</p>
-
-        <hr>
-
-    </div>
-
-</div>
-
 
 <!-- JS FILE LINK -->
 <script src="script.js"></script>
+<script src="language.js"></script>
 
 </body>
 </html>
