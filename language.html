@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Choose Language</title>
+
+<!-- REMIX ICON -->
+<link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css"
+rel="stylesheet">
+
+<style>
+
+/* BASIC */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f1f3f6;
+}
+
+/* PAGE */
+.language-page{
+    max-width:420px;
+    margin:auto;
+    min-height:100vh;
+    background:#fff;
+}
+
+/* HEADER */
+.language-header{
+    height:56px;
+    background:#fff;
+
+    display:flex;
+    align-items:center;
+
+    padding:0 14px;
+
+    border-bottom:1px solid #e5e5e5;
+
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+/* BACK */
+.back-btn{
+    font-size:23px;
+    color:#222;
+    cursor:pointer;
+}
+
+/* TITLE */
+.language-title{
+    flex:1;
+    text-align:center;
+
+    font-size:16px;
+    font-weight:600;
+    color:#222;
+
+    margin-right:23px;
+}
+
+/* SUBTITLE */
+.language-subtitle{
+    padding:16px 14px 10px;
+
+    font-size:13px;
+    color:#666;
+
+    line-height:1.5;
+}
+
+/* LIST */
+.language-list{
+    padding-bottom:20px;
+}
+
+/* ITEM */
+.language-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:16px 14px;
+
+    border-bottom:1px solid #f1f1f1;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+.language-item:hover{
+    background:#fafafa;
+}
+
+.language-item.active{
+    background:#f5f9ff;
+}
+
+/* LEFT */
+.language-left{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+}
+
+/* NAME */
+.language-name{
+    font-size:14px;
+    font-weight:600;
+    color:#222;
+}
+
+/* LOCAL */
+.language-local{
+    font-size:12px;
+    color:#777;
+}
+
+/* RADIO */
+.language-radio{
+    width:20px;
+    height:20px;
+
+    border-radius:50%;
+
+    border:2px solid #bbb;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:0.2s;
+}
+
+/* ACTIVE */
+.language-item.active .language-radio{
+    border-color:#2874f0;
+}
+
+.language-item.active .language-radio::after{
+    content:"";
+
+    width:10px;
+    height:10px;
+
+    border-radius:50%;
+
+    background:#2874f0;
+}
+
+/* SAVE BUTTON */
+.save-btn{
+    position:sticky;
+    bottom:0;
+
+    width:100%;
+
+    height:54px;
+
+    border:none;
+    background:#2874f0;
+
+    color:#fff;
+
+    font-size:15px;
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+/* MOBILE */
+@media(max-width:480px){
+
+    .language-page{
+        max-width:100%;
+    }
+
+    .language-item{
+        padding:15px 12px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="language-page">
+
+    <!-- HEADER -->
+    <div class="language-header">
+
+        <!-- BACK -->
+        <i class="ri-arrow-left-line back-btn"></i>
+
+        <!-- TITLE -->
+        <div class="language-title">
+            Choose Language
+        </div>
+
+    </div>
+
+    <!-- SUBTITLE -->
+    <div class="language-subtitle">
+        Select your preferred language for a better shopping experience.
+    </div>
+
+    <!-- LANGUAGE LIST -->
+    <div class="language-list" id="languageList">
+
+        <!-- ENGLISH -->
+        <div class="language-item"
+        data-lang="English">
+
+            <div class="language-left">
+                <div class="language-name">
+                    English
+                </div>
+
+                <div class="language-local">
+                    English
+                </div>
+            </div>
+
+            <div class="language-radio"></div>
+
+        </div>
+
+        <!-- HINDI -->
+        <div class="language-item"
+        data-lang="Hindi">
+
+            <div class="language-left">
+                <div class="language-name">
+                    Hindi
+                </div>
+
+                <div class="language-local">
+                    हिन्दी
+                </div>
+            </div>
+
+            <div class="language-radio"></div>
+
+        </div>
+
+        <!-- BENGALI -->
+        <div class="language-item"
+        data-lang="Bengali">
+
+            <div class="language-left">
+                <div class="language-name">
+                    Bengali
+                </div>
+
+                <div class="language-local">
+                    বাংলা
+                </div>
+            </div>
+
+            <div class="language-radio"></div>
+
+        </div>
+
+        <!-- TAMIL -->
+        <div class="language-item"
+        data-lang="Tamil">
+
+            <div class="language-left">
+                <div class="language-name">
+                    Tamil
+                </div>
+
+                <div class="language-local">
+                    தமிழ்
+                </div>
+            </div>
+
+            <div class="language-radio"></div>
+
+        </div>
+
+        <!-- TELUGU -->
+        <div class="language-item"
+        data-lang="Telugu">
+
+            <div class="language-left">
+                <div class="language-name">
+                    Telugu
+                </div>
+
+                <div class="language-local">
+                    తెలుగు
+                </div>
+            </div>
+
+            <div class="language-radio"></div>
+
+        </div>
+
+    </div>
+
+    <!-- SAVE -->
+    <button class="save-btn"
+    id="saveBtn">
+
+        Save Language
+
+    </button>
+
+</div>
+
+<script>
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+document.querySelector(".back-btn")
+.addEventListener("click", function(){
+
+    if(window.history.length > 1){
+        history.back();
+    }else{
+        window.location.href =
+        "index.html";
+    }
+
+});
+
+
+/* =========================
+   LANGUAGE ITEMS
+========================= */
+
+const items =
+document.querySelectorAll(
+    ".language-item"
+);
+
+
+/* =========================
+   GET SAVED LANGUAGE
+========================= */
+
+let selectedLanguage =
+localStorage.getItem(
+    "selectedLanguage"
+) || "English";
+
+
+/* =========================
+   SET ACTIVE ON LOAD
+========================= */
+
+function setActiveLanguage(){
+
+    items.forEach((item)=>{
+
+        item.classList.remove(
+            "active"
+        );
+
+        if(
+            item.dataset.lang ===
+            selectedLanguage
+        ){
+            item.classList.add(
+                "active"
+            );
+        }
+
+    });
+
+}
+
+
+/* =========================
+   CLICK SELECT
+========================= */
+
+items.forEach((item)=>{
+
+    item.addEventListener(
+        "click",
+        function(){
+
+            items.forEach((i)=>
+                i.classList.remove(
+                    "active"
+                )
+            );
+
+            this.classList.add(
+                "active"
+            );
+
+            selectedLanguage =
+            this.dataset.lang;
+
+        }
+    );
+
+});
+
+
+/* =========================
+   SAVE LANGUAGE
+========================= */
+
+document.getElementById(
+    "saveBtn"
+)
+.addEventListener(
+    "click",
+    function(){
+
+        localStorage.setItem(
+            "selectedLanguage",
+            selectedLanguage
+        );
+
+        alert(
+            selectedLanguage +
+            " selected successfully"
+        );
+
+        window.location.reload();
+
+    }
+);
+
+
+/* =========================
+   INITIAL LOAD
+========================= */
+
+setActiveLanguage();
+
+</script>
+
+</body>
+</html>

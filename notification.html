@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Notifications</title>
+
+<!-- REMIX ICON -->
+<link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css"
+rel="stylesheet">
+
+<style>
+
+/* BASIC */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f1f3f6;
+}
+
+/* PAGE */
+.notification-page{
+    max-width:420px;
+    margin:auto;
+    min-height:100vh;
+    background:#fff;
+}
+
+/* HEADER */
+.notification-header{
+    height:56px;
+    background:#fff;
+
+    display:flex;
+    align-items:center;
+
+    padding:0 14px;
+
+    border-bottom:1px solid #e5e5e5;
+
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+/* BACK */
+.back-btn{
+    font-size:23px;
+    color:#222;
+    cursor:pointer;
+}
+
+/* TITLE */
+.notification-title{
+    flex:1;
+    text-align:center;
+
+    font-size:16px;
+    font-weight:600;
+    color:#222;
+
+    margin-right:23px;
+}
+
+/* LIST */
+.notification-list{
+    padding:8px 0;
+}
+
+/* CARD */
+.notification-card{
+    display:flex;
+    gap:12px;
+
+    padding:14px;
+
+    border-bottom:1px solid #f1f1f1;
+
+    background:#fff;
+}
+
+/* ICON */
+.notification-icon{
+    width:42px;
+    height:42px;
+
+    border-radius:50%;
+
+    background:#f1f3f6;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    flex-shrink:0;
+}
+
+.notification-icon i{
+    font-size:20px;
+    color:#ff3f6c;
+}
+
+/* CONTENT */
+.notification-content{
+    flex:1;
+}
+
+/* HEADING */
+.notification-heading{
+    font-size:14px;
+    font-weight:600;
+    color:#222;
+
+    margin-bottom:4px;
+}
+
+/* TEXT */
+.notification-text{
+    font-size:13px;
+    color:#666;
+
+    line-height:1.5;
+}
+
+/* TIME */
+.notification-time{
+    font-size:11px;
+    color:#999;
+
+    margin-top:6px;
+}
+
+/* UNREAD */
+.unread{
+    background:#f7faff;
+}
+
+/* MOBILE */
+@media(max-width:480px){
+
+    .notification-page{
+        max-width:100%;
+    }
+
+    .notification-card{
+        padding:13px 12px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="notification-page">
+
+    <!-- HEADER -->
+    <div class="notification-header">
+
+        <!-- BACK -->
+        <i class="ri-arrow-left-line back-btn"></i>
+
+        <!-- TITLE -->
+        <div class="notification-title">
+            Notifications
+        </div>
+
+    </div>
+
+    <!-- NOTIFICATIONS -->
+    <div class="notification-list">
+
+        <!-- CARD -->
+        <div class="notification-card unread">
+
+            <div class="notification-icon">
+                <i class="ri-price-tag-3-line"></i>
+            </div>
+
+            <div class="notification-content">
+
+                <div class="notification-heading">
+                    Big Sale is Live 🔥
+                </div>
+
+                <div class="notification-text">
+                    Get up to 70% OFF on Fashion,
+                    Electronics & More.
+                </div>
+
+                <div class="notification-time">
+                    2 min ago
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CARD -->
+        <div class="notification-card">
+
+            <div class="notification-icon">
+                <i class="ri-coupon-3-line"></i>
+            </div>
+
+            <div class="notification-content">
+
+                <div class="notification-heading">
+                    Coupon Applied 🎉
+                </div>
+
+                <div class="notification-text">
+                    Use code KHUS50 and save extra ₹50 today.
+                </div>
+
+                <div class="notification-time">
+                    1 hour ago
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CARD -->
+        <div class="notification-card">
+
+            <div class="notification-icon">
+                <i class="ri-truck-line"></i>
+            </div>
+
+            <div class="notification-content">
+
+                <div class="notification-heading">
+                    Order Shipped 🚚
+                </div>
+
+                <div class="notification-text">
+                    Your recent order has been shipped successfully.
+                </div>
+
+                <div class="notification-time">
+                    Yesterday
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CARD -->
+        <div class="notification-card">
+
+            <div class="notification-icon">
+                <i class="ri-gift-line"></i>
+            </div>
+
+            <div class="notification-content">
+
+                <div class="notification-heading">
+                    Special Offer For You 🎁
+                </div>
+
+                <div class="notification-text">
+                    Exclusive member discount unlocked on premium brands.
+                </div>
+
+                <div class="notification-time">
+                    2 days ago
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* BACK BUTTON */
+document.querySelector(".back-btn")
+.addEventListener("click", function(){
+
+    if(window.history.length > 1){
+        history.back();
+    }else{
+        window.location.href = "index.html";
+    }
+
+});
+
+</script>
+
+</body>
+</html>
