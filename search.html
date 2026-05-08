@@ -1,143 +1,295 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Search</title>
-    <link rel="stylesheet" href="style.css">
+<html lang="en">
 
-    <!-- ICONS -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Search</title>
+
+<!-- REMIX ICON -->
+<link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css"
+rel="stylesheet">
+
+<style>
+
+/* BASIC */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f1f3f6;
+}
+
+/* PAGE */
+.search-page{
+    max-width:420px;
+    margin:auto;
+    min-height:100vh;
+    background:#fff;
+}
+
+/* HEADER */
+.search-header{
+    height:58px;
+    background:#fff;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:0 14px;
+
+    border-bottom:1px solid #e5e5e5;
+
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+/* BACK BUTTON */
+.back-btn{
+    font-size:22px;
+    color:#333;
+    cursor:pointer;
+    flex-shrink:0;
+}
+
+/* SEARCH INPUT */
+.search-header input{
+    flex:1;
+    height:40px;
+
+    border:none;
+    outline:none;
+
+    background:#f1f3f6;
+
+    border-radius:10px;
+
+    padding:0 14px;
+
+    font-size:14px;
+    color:#111;
+}
+
+/* HISTORY */
+.history{
+    list-style:none;
+    padding:10px 0;
+}
+
+/* HISTORY ITEM */
+.history li{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:10px;
+
+    padding:14px;
+
+    border-bottom:1px solid #f0f0f0;
+
+    font-size:14px;
+}
+
+/* TEXT */
+.history li span{
+    flex:1;
+    color:#222;
+    cursor:pointer;
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+/* DELETE BUTTON */
+.history li button{
+    border:none;
+    background:none;
+
+    font-size:16px;
+    color:#888;
+
+    cursor:pointer;
+}
+
+/* MOBILE FIX */
+@media(max-width:480px){
+
+    .search-page{
+        max-width:100%;
+    }
+
+    .search-header{
+        padding:0 12px;
+    }
+
+    .search-header input{
+        font-size:13px;
+    }
+
+    .history li{
+        padding:13px 12px;
+        font-size:13px;
+    }
+
+}
+
+</style>
 </head>
 
 <body>
 
 <div class="search-page">
 
-    <!-- TOP SEARCH BAR (sticky feel) -->
-    <div class="search-top">
-        <i class="ri-arrow-left-line" onclick="history.back()"></i>
-
-        <input type="text" id="searchInput" placeholder="Search for styles, brands & more">
-    </div>
-
-    <!-- HISTORY -->
-    <ul id="historyList" class="history"></ul>
-
-</div>
-
-<body>
-
-<div class="search-page">
-
-    <!-- 🔥 TOP HEADER -->
+    <!-- HEADER -->
     <div class="search-header">
+
+        <!-- BACK -->
         <i class="ri-arrow-left-line back-btn"></i>
 
-        <input 
-            type="text" 
+        <!-- INPUT -->
+        <input
+            type="text"
             id="searchInput"
             placeholder="Search for Products, Brands and More"
         >
+
     </div>
 
-    <!-- 🔥 HISTORY -->
+    <!-- HISTORY -->
     <ul class="history" id="historyList"></ul>
 
 </div>
 
 <script>
+
 /* =========================
-   BACK BUTTON (SAFE)
+   SAFE BACK BUTTON
 ========================= */
-document.addEventListener("DOMContentLoaded", function () {
 
-    const backBtn = document.querySelector(".back-btn");
+document.querySelector(".back-btn")
+.addEventListener("click", function () {
 
-    if (backBtn) {
-        backBtn.addEventListener("click", function () {
-            window.history.back();
-            console.log("back clicked");
-        });
+    if (window.history.length > 1) {
+        window.history.back();
+    } else {
+        window.location.href = "index.html";
     }
 
 });
 
 
 /* =========================
-   SEARCH HISTORY SYSTEM
+   SEARCH HISTORY
 ========================= */
 
-let history = JSON.parse(localStorage.getItem("searchHistory")) || [];
-const input = document.getElementById("searchInput");
+let searchHistory =
+JSON.parse(localStorage.getItem("searchHistory")) || [];
+
+const input =
+document.getElementById("searchInput");
 
 
-/* ENTER → SAVE */
-if (input) {
-    input.addEventListener("keydown", function (event) {
+/* ENTER SAVE */
+input.addEventListener("keydown", function(event){
 
-        if (event.key === "Enter") {
+    if(event.key === "Enter"){
 
-            let value = input.value.trim();
-            if (!value) return;
+        let value = input.value.trim();
 
-            history = history.filter(item => item !== value);
-            history.unshift(value);
+        if(!value) return;
 
-            if (history.length > 10) {
-                history.pop();
-            }
+        /* REMOVE DUPLICATE */
+        searchHistory =
+        searchHistory.filter(item => item !== value);
 
-            localStorage.setItem("searchHistory", JSON.stringify(history));
+        /* ADD TOP */
+        searchHistory.unshift(value);
 
-            renderHistory();
-
-            input.value = "";
+        /* LIMIT */
+        if(searchHistory.length > 10){
+            searchHistory.pop();
         }
-    });
-}
+
+        /* SAVE */
+        localStorage.setItem(
+            "searchHistory",
+            JSON.stringify(searchHistory)
+        );
+
+        renderHistory();
+
+        input.value = "";
+    }
+
+});
 
 
-/* DELETE ITEM */
-function deleteItem(index) {
-    history.splice(index, 1);
-    localStorage.setItem("searchHistory", JSON.stringify(history));
+/* DELETE */
+function deleteItem(index){
+
+    searchHistory.splice(index,1);
+
+    localStorage.setItem(
+        "searchHistory",
+        JSON.stringify(searchHistory)
+    );
+
     renderHistory();
 }
 
 
-/* CLICK SEARCH */
-function useSearch(value) {
-    if (!input) return;
+/* USE SEARCH */
+function useSearch(value){
+
     input.value = value;
     input.focus();
 }
 
 
 /* RENDER */
-function renderHistory() {
+function renderHistory(){
 
-    const list = document.getElementById("historyList");
-    if (!list) return;
+    const list =
+    document.getElementById("historyList");
 
     list.innerHTML = "";
 
-    history.forEach((item, index) => {
+    searchHistory.forEach((item,index)=>{
 
         let li = document.createElement("li");
 
         li.innerHTML = `
-            <span onclick="useSearch('${item}')">${item}</span>
-            <button onclick="deleteItem(${index})">✖</button>
+            <span onclick="useSearch('${item}')">
+                ${item}
+            </span>
+
+            <button onclick="deleteItem(${index})">
+                ✕
+            </button>
         `;
 
         list.appendChild(li);
+
     });
+
 }
 
 
 /* INIT */
-window.addEventListener("load", renderHistory);
- </script>
+renderHistory();
+
+</script>
 
 </body>
 </html>
