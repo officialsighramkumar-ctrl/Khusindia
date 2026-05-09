@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Offer Zone</title>
+
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+rel="stylesheet">
+
+<!-- ICONS -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+/* =========================
+   BASIC
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f1f3f6;
+}
+
+/* PAGE */
+.offer-page{
+    max-width:420px;
+    margin:auto;
+    background:#f1f3f6;
+    min-height:100vh;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    height:52px;
+    background:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    border-bottom:1px solid #eee;
+
+    padding:0 14px;
+}
+
+/* BACK */
+.back-btn{
+    position:absolute;
+    left:14px;
+
+    font-size:21px;
+    color:#333;
+
+    cursor:pointer;
+}
+
+/* TITLE */
+.header-title{
+    font-size:15px;
+    font-weight:600;
+    color:#222;
+}
+
+/* RIGHT */
+.header-right{
+    position:absolute;
+    right:14px;
+
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+
+.header-right i{
+    font-size:18px;
+    color:#444;
+    cursor:pointer;
+}
+
+/* =========================
+   TOP BANNER
+========================= */
+
+.top-banner{
+    width:100%;
+    height:180px;
+    overflow:hidden;
+}
+
+.top-banner img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section{
+    margin-top:12px;
+}
+
+/* TITLE */
+.section-title{
+    padding:0 12px;
+    margin-bottom:10px;
+
+    font-size:15px;
+    font-weight:600;
+    color:#222;
+}
+
+/* =========================
+   PRODUCT ROW
+========================= */
+
+.product-row{
+    display:flex;
+    gap:10px;
+
+    overflow-x:auto;
+
+    padding:0 12px 6px;
+}
+
+.product-row::-webkit-scrollbar{
+    display:none;
+}
+
+/* CARD */
+.product-card{
+    flex:0 0 auto;
+
+    width:130px;
+
+    background:#fff;
+
+    border-radius:10px;
+
+    overflow:hidden;
+}
+
+/* IMAGE */
+.product-image{
+    width:100%;
+    height:150px;
+
+    background:#ddd;
+}
+
+.product-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* INFO */
+.product-info{
+    padding:8px;
+}
+
+.product-name{
+    font-size:13px;
+    color:#222;
+
+    line-height:1.4;
+
+    height:36px;
+
+    overflow:hidden;
+}
+
+.product-price{
+    margin-top:5px;
+
+    font-size:14px;
+    font-weight:600;
+
+    color:#111;
+}
+
+.product-off{
+    font-size:12px;
+    color:green;
+
+    margin-top:2px;
+}
+
+/* =========================
+   MID BANNER
+========================= */
+
+.mid-banner{
+    margin:14px 12px 0;
+
+    height:120px;
+
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.mid-banner img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* =========================
+   GRID PRODUCTS
+========================= */
+
+.grid-products{
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:10px;
+
+    padding:12px;
+}
+
+/* GRID CARD */
+.grid-card{
+    background:#fff;
+
+    border-radius:10px;
+
+    overflow:hidden;
+}
+
+/* GRID IMAGE */
+.grid-image{
+    width:100%;
+    height:170px;
+
+    background:#ddd;
+}
+
+.grid-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* GRID INFO */
+.grid-info{
+    padding:8px;
+}
+
+/* =========================
+   EXTRA BANNER
+========================= */
+
+.offer-strip{
+    margin:8px 12px 14px;
+
+    background:#ffebeb;
+
+    color:#d60000;
+
+    font-size:13px;
+    font-weight:600;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    text-align:center;
+}
+
+/* MOBILE */
+@media(max-width:480px){
+
+    .offer-page{
+        max-width:100%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="offer-page">
+
+    <!-- HEADER -->
+    <div class="header">
+
+        <!-- BACK -->
+        <i class="fa-solid fa-arrow-left
+        back-btn"></i>
+
+        <!-- TITLE -->
+        <div class="header-title">
+            Offer Zone
+        </div>
+
+        <!-- RIGHT -->
+        <div class="header-right">
+
+            <i class="fa-solid
+            fa-magnifying-glass"></i>
+
+            <i class="fa-solid
+            fa-bag-shopping"></i>
+
+        </div>
+
+    </div>
+
+    <!-- TOP BANNER -->
+    <div class="top-banner">
+
+        <img src="banner1.jpg">
+
+    </div>
+
+    <!-- SECTION -->
+    <div class="section">
+
+        <div class="section-title">
+            Trending Deals
+        </div>
+
+        <div class="product-row">
+
+            <!-- CARD -->
+            <div class="product-card">
+
+                <div class="product-image">
+                    <img src="product1.jpg">
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-name">
+                        Stylish Hoodie
+                    </div>
+
+                    <div class="product-price">
+                        ₹799
+                    </div>
+
+                    <div class="product-off">
+                        50% OFF
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CARD -->
+            <div class="product-card">
+
+                <div class="product-image">
+                    <img src="product2.jpg">
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-name">
+                        Sneakers For Men
+                    </div>
+
+                    <div class="product-price">
+                        ₹1299
+                    </div>
+
+                    <div class="product-off">
+                        40% OFF
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CARD -->
+            <div class="product-card">
+
+                <div class="product-image">
+                    <img src="product3.jpg">
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-name">
+                        Smart Watch
+                    </div>
+
+                    <div class="product-price">
+                        ₹1499
+                    </div>
+
+                    <div class="product-off">
+                        60% OFF
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- MID BANNER -->
+    <div class="mid-banner">
+
+        <img src="banner2.jpg">
+
+    </div>
+
+    <!-- GRID -->
+    <div class="section">
+
+        <div class="section-title">
+            Best Fashion Picks
+        </div>
+
+        <div class="grid-products">
+
+            <!-- GRID CARD -->
+            <div class="grid-card">
+
+                <div class="grid-image">
+                    <img src="fashion1.jpg">
+                </div>
+
+                <div class="grid-info">
+
+                    <div class="product-name">
+                        Women's Kurti
+                    </div>
+
+                    <div class="product-price">
+                        ₹599
+                    </div>
+
+                    <div class="product-off">
+                        Extra 30% OFF
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- GRID CARD -->
+            <div class="grid-card">
+
+                <div class="grid-image">
+                    <img src="fashion2.jpg">
+                </div>
+
+                <div class="grid-info">
+
+                    <div class="product-name">
+                        Casual T-Shirt
+                    </div>
+
+                    <div class="product-price">
+                        ₹399
+                    </div>
+
+                    <div class="product-off">
+                        Buy 1 Get 1
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- GRID CARD -->
+            <div class="grid-card">
+
+                <div class="grid-image">
+                    <img src="fashion3.jpg">
+                </div>
+
+                <div class="grid-info">
+
+                    <div class="product-name">
+                        Party Wear Dress
+                    </div>
+
+                    <div class="product-price">
+                        ₹999
+                    </div>
+
+                    <div class="product-off">
+                        55% OFF
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- GRID CARD -->
+            <div class="grid-card">
+
+                <div class="grid-image">
+                    <img src="fashion4.jpg">
+                </div>
+
+                <div class="grid-info">
+
+                    <div class="product-name">
+                        Denim Jacket
+                    </div>
+
+                    <div class="product-price">
+                        ₹1399
+                    </div>
+
+                    <div class="product-off">
+                        Limited Deal
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- STRIP -->
+    <div class="offer-strip">
+
+        ⚡ Free Delivery On Orders Above ₹499
+
+    </div>
+
+</div>
+
+<script>
+
+/* BACK */
+document.querySelector(".back-btn")
+.addEventListener("click", function(){
+
+    if(history.length > 1){
+        history.back();
+    }else{
+        window.location.href =
+        "index.html";
+    }
+
+});
+
+
+/* SEARCH */
+document.querySelector(
+".fa-magnifying-glass"
+)
+.addEventListener("click", function(){
+
+    window.location.href =
+    "search.html";
+
+});
+
+
+/* BAG */
+document.querySelector(
+".fa-bag-shopping"
+)
+.addEventListener("click", function(){
+
+    alert("Cart Page");
+
+});
+
+</script>
+
+</body>
+</html>
