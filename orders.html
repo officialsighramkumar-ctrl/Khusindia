@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>My Orders</title>
+
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+rel="stylesheet">
+
+<!-- ICONS -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+/* =========================
+   BASIC
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f1f3f6;
+}
+
+/* PAGE */
+.orders-page{
+    max-width:420px;
+    margin:auto;
+    min-height:100vh;
+    background:#f1f3f6;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    height:52px;
+    background:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    border-bottom:1px solid #eee;
+
+    padding:0 14px;
+}
+
+/* BACK */
+.back-btn{
+    position:absolute;
+    left:14px;
+
+    font-size:21px;
+    color:#333;
+
+    cursor:pointer;
+}
+
+/* TITLE */
+.header-title{
+    font-size:15px;
+    font-weight:600;
+    color:#222;
+}
+
+/* RIGHT */
+.header-right{
+    position:absolute;
+    right:14px;
+
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+
+.header-right i{
+    font-size:18px;
+    color:#444;
+    cursor:pointer;
+}
+
+/* =========================
+   ORDER CARD
+========================= */
+
+.order-card{
+    background:#fff;
+
+    margin:10px;
+
+    border-radius:12px;
+
+    overflow:hidden;
+}
+
+/* TOP */
+.order-top{
+    display:flex;
+
+    gap:12px;
+
+    padding:12px;
+
+    cursor:pointer;
+}
+
+/* IMAGE */
+.order-image{
+    width:90px;
+    height:90px;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    background:#eee;
+
+    flex-shrink:0;
+}
+
+.order-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* INFO */
+.order-info{
+    flex:1;
+}
+
+/* NAME */
+.order-name{
+    font-size:14px;
+    font-weight:600;
+
+    color:#222;
+
+    line-height:1.4;
+}
+
+/* PRICE */
+.order-price{
+    margin-top:4px;
+
+    font-size:14px;
+    font-weight:600;
+
+    color:#111;
+}
+
+/* DATE */
+.arriving{
+    margin-top:10px;
+
+    font-size:13px;
+    color:green;
+
+    font-weight:500;
+}
+
+/* DETAILS BTN */
+.more-btn{
+    margin-top:10px;
+
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+
+    font-size:13px;
+    font-weight:600;
+
+    color:#2874f0;
+
+    cursor:pointer;
+}
+
+/* =========================
+   TRACKING
+========================= */
+
+.tracking-box{
+    display:none;
+
+    border-top:1px solid #f1f1f1;
+
+    padding:14px;
+}
+
+/* ACTIVE */
+.tracking-box.active{
+    display:block;
+}
+
+/* TRACK ITEM */
+.track-item{
+    display:flex;
+    gap:12px;
+
+    margin-bottom:18px;
+
+    position:relative;
+}
+
+/* DOT */
+.track-dot{
+    width:14px;
+    height:14px;
+
+    border-radius:50%;
+
+    background:#2874f0;
+
+    margin-top:4px;
+
+    flex-shrink:0;
+}
+
+/* LINE */
+.track-item::after{
+    content:"";
+
+    position:absolute;
+
+    left:6px;
+    top:20px;
+
+    width:2px;
+    height:40px;
+
+    background:#ddd;
+}
+
+.track-item:last-child::after{
+    display:none;
+}
+
+/* TEXT */
+.track-text h4{
+    font-size:13px;
+    color:#222;
+}
+
+.track-text p{
+    margin-top:3px;
+
+    font-size:12px;
+    color:#777;
+}
+
+/* MOBILE */
+@media(max-width:480px){
+
+    .orders-page{
+        max-width:100%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="orders-page">
+
+    <!-- HEADER -->
+    <div class="header">
+
+        <!-- BACK -->
+        <i class="fa-solid fa-arrow-left
+        back-btn"></i>
+
+        <!-- TITLE -->
+        <div class="header-title">
+
+            My Orders
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="header-right">
+
+            <i class="fa-solid
+            fa-magnifying-glass"></i>
+
+            <i class="fa-solid
+            fa-bag-shopping"></i>
+
+        </div>
+
+    </div>
+
+    <!-- ORDER CARD 1 -->
+    <div class="order-card">
+
+        <!-- TOP -->
+        <div class="order-top"
+        onclick="openProduct()">
+
+            <!-- IMAGE -->
+            <div class="order-image">
+
+                <img src="product1.jpg">
+
+            </div>
+
+            <!-- INFO -->
+            <div class="order-info">
+
+                <div class="order-name">
+
+                    Stylish Oversized Hoodie
+
+                </div>
+
+                <div class="order-price">
+
+                    ₹899
+
+                </div>
+
+                <div class="arriving">
+
+                    Arriving on 16 May
+
+                </div>
+
+                <!-- MORE -->
+                <div class="more-btn"
+                onclick="toggleTracking(event,this)">
+
+                    More Details
+
+                    <i class="fa-solid
+                    fa-angle-down"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- TRACKING -->
+        <div class="tracking-box">
+
+            <div class="track-item">
+
+                <div class="track-dot"></div>
+
+                <div class="track-text">
+
+                    <h4>Order Confirmed</h4>
+
+                    <p>9 May, 10:30 AM</p>
+
+                </div>
+
+            </div>
+
+            <div class="track-item">
+
+                <div class="track-dot"></div>
+
+                <div class="track-text">
+
+                    <h4>Shipped</h4>
+
+                    <p>10 May, 3:20 PM</p>
+
+                </div>
+
+            </div>
+
+            <div class="track-item">
+
+                <div class="track-dot"></div>
+
+                <div class="track-text">
+
+                    <h4>Out For Delivery</h4>
+
+                    <p>Expected Soon</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ORDER CARD 2 -->
+    <div class="order-card">
+
+        <div class="order-top"
+        onclick="openProduct()">
+
+            <div class="order-image">
+
+                <img src="product2.jpg">
+
+            </div>
+
+            <div class="order-info">
+
+                <div class="order-name">
+
+                    Wireless Bluetooth Earbuds
+
+                </div>
+
+                <div class="order-price">
+
+                    ₹1,299
+
+                </div>
+
+                <div class="arriving">
+
+                    Delivered on 3 May
+
+                </div>
+
+                <div class="more-btn"
+                onclick="toggleTracking(event,this)">
+
+                    More Details
+
+                    <i class="fa-solid
+                    fa-angle-down"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- TRACK -->
+        <div class="tracking-box">
+
+            <div class="track-item">
+
+                <div class="track-dot"></div>
+
+                <div class="track-text">
+
+                    <h4>Order Confirmed</h4>
+
+                    <p>1 May, 9:20 AM</p>
+
+                </div>
+
+            </div>
+
+            <div class="track-item">
+
+                <div class="track-dot"></div>
+
+                <div class="track-text">
+
+                    <h4>Shipped</h4>
+
+                    <p>2 May, 11:45 AM</p>
+
+                </div>
+
+            </div>
+
+            <div class="track-item">
+
+                <div class="track-dot"></div>
+
+                <div class="track-text">
+
+                    <h4>Delivered</h4>
+
+                    <p>3 May, 2:10 PM</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ORDER CARD 3 -->
+    <div class="order-card">
+
+        <div class="order-top"
+        onclick="openProduct()">
+
+            <div class="order-image">
+
+                <img src="product3.jpg">
+
+            </div>
+
+            <div class="order-info">
+
+                <div class="order-name">
+
+                    Men's Running Shoes
+
+                </div>
+
+                <div class="order-price">
+
+                    ₹2,199
+
+                </div>
+
+                <div class="arriving">
+
+                    Arriving Tomorrow
+
+                </div>
+
+                <div class="more-btn"
+                onclick="toggleTracking(event,this)">
+
+                    More Details
+
+                    <i class="fa-solid
+                    fa-angle-down"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- TRACK -->
+        <div class="tracking-box">
+
+            <div class="track-item">
+
+                <div class="track-dot"></div>
+
+                <div class="track-text">
+
+                    <h4>Order Confirmed</h4>
+
+                    <p>8 May, 6:40 PM</p>
+
+                </div>
+
+            </div>
+
+            <div class="track-item">
+
+                <div class="track-dot"></div>
+
+                <div class="track-text">
+
+                    <h4>Packed</h4>
+
+                    <p>9 May, 8:10 AM</p>
+
+                </div>
+
+            </div>
+
+            <div class="track-item">
+
+                <div class="track-dot"></div>
+
+                <div class="track-text">
+
+                    <h4>Out For Delivery</h4>
+
+                    <p>Expected by Tomorrow</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<script>
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+document.querySelector(".back-btn")
+.addEventListener("click", function(){
+
+    if(history.length > 1){
+
+        history.back();
+
+    }else{
+
+        window.location.href =
+        "index.html";
+
+    }
+
+});
+
+
+/* =========================
+   SEARCH
+========================= */
+
+document.querySelector(
+".fa-magnifying-glass"
+)
+.addEventListener("click", function(){
+
+    window.location.href =
+    "search.html";
+
+});
+
+
+/* =========================
+   BAG
+========================= */
+
+document.querySelector(
+".fa-bag-shopping"
+)
+.addEventListener("click", function(){
+
+    alert("Cart Page");
+
+});
+
+
+/* =========================
+   PRODUCT OPEN
+========================= */
+
+function openProduct(){
+
+    window.location.href =
+    "product.html";
+
+}
+
+
+/* =========================
+   TRACKING TOGGLE
+========================= */
+
+function toggleTracking(event,btn){
+
+    event.stopPropagation();
+
+    const box =
+    btn.closest(".order-card")
+    .querySelector(".tracking-box");
+
+    box.classList.toggle("active");
+
+}
+
+</script>
+
+</body>
+</html>
