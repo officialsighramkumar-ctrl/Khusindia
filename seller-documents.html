@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seller Documentation - KHUSINDIA</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:#f5f5f5;
+    color:#111;
+}
+
+.navbar{
+    height:56px;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 16px;
+    border-bottom:1px solid #eee;
+    position:sticky;
+    top:0;
+}
+
+.navbar i{ color:#4A0D2A; cursor:pointer; }
+.title{ font-weight:600; color:#4A0D2A; }
+
+.container{ padding:16px; }
+
+.card{
+    background:#fff;
+    padding:18px;
+    border-radius:16px;
+    margin-bottom:14px;
+}
+
+h2{ font-size:15px; margin-bottom:12px; color:#4A0D2A; }
+
+label{ font-size:12px; font-weight:500; display:block; margin-bottom:6px; }
+
+input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:13px;
+    margin-bottom:12px;
+    outline:none;
+}
+
+input:focus{ border-color:#4A0D2A; }
+
+.status{
+    background:#e9f7ef;
+    color:#1c7c45;
+    padding:10px;
+    border-radius:10px;
+    font-size:13px;
+    font-weight:500;
+    margin-bottom:12px;
+}
+
+.pending{
+    background:#fff3cd;
+    color:#856404;
+    padding:10px;
+    border-radius:10px;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:12px;
+}
+
+.btn{
+    width:100%;
+    height:48px;
+    background:#4A0D2A;
+    color:#fff;
+    border:none;
+    border-radius:12px;
+    font-weight:600;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.dashboard-btn{
+    width:100%;
+    height:48px;
+    background:#1c7c45;
+    color:#fff;
+    border:none;
+    border-radius:12px;
+    font-weight:600;
+    cursor:pointer;
+    margin-top:10px;
+    display:none;
+}
+
+#successMsg{
+    display:none;
+    background:#e9f7ef;
+    color:#1c7c45;
+    padding:14px;
+    border-radius:12px;
+    font-size:13px;
+    font-weight:500;
+}
+
+</style>
+</head>
+<body>
+
+<div class="navbar">
+    <i class="fa-solid fa-arrow-left" onclick="goBack()"></i>
+    <div class="title">Seller Documentation</div>
+    <i class="fa-solid fa-house" onclick="window.location.href='index.html'"></i>
+</div>
+
+<div class="container">
+
+<div class="card" id="statusBox">
+    <div class="status">✔ Request Submitted Successfully</div>
+    <div style="font-size:12px;color:#666;">
+        Your documents will be verified by <b>KHUSINDIA Team</b>.
+    </div>
+</div>
+
+<!-- SUCCESS MESSAGE AFTER SUBMIT -->
+<div id="successMsg">
+    ⏳ Your documents have been submitted successfully.<br>
+    KHUSINDIA Team will verify and approve your seller account shortly.
+</div>
+
+<div class="card" id="formCard">
+<h2>Upload Documents</h2>
+
+<label>PAN Card *</label>
+<input type="file" id="pan">
+
+<label>Aadhaar Card *</label>
+<input type="file" id="aadhaar">
+
+<label>Bank Proof *</label>
+<input type="file" id="bank">
+
+<label>GST Number *</label>
+<input type="text" id="gst" placeholder="Enter GST Number">
+
+<label>Signature *</label>
+<input type="file" id="sign">
+
+<label>Store Logo (optional)</label>
+<input type="file" id="logo">
+</div>
+
+<button class="btn" id="submitBtn" onclick="submitDocs()">Submit Documentation</button>
+<button class="dashboard-btn" id="dashboardBtn" onclick="goDashboard()">Go to Seller Dashboard</button>
+
+</div>
+
+<script>
+
+function submitDocs(){
+
+    const pan=document.getElementById('pan').value;
+    const aadhaar=document.getElementById('aadhaar').value;
+    const bank=document.getElementById('bank').value;
+    const gst=document.getElementById('gst').value.trim();
+    const sign=document.getElementById('sign').value;
+
+    if(!pan||!aadhaar||!bank||!sign){
+        alert("Upload all required documents");
+        return;
+    }
+
+    if(gst.length<15){
+        alert("Enter valid GST number");
+        return;
+    }
+
+    document.getElementById("submitBtn").disabled=true;
+
+    // HIDE FORM AFTER SUBMIT
+    document.getElementById("formCard").style.display="none";
+    document.getElementById("submitBtn").style.display="none";
+
+    // SHOW MESSAGE
+    document.getElementById("successMsg").style.display="block";
+
+    document.getElementById("statusBox").innerHTML=`
+        <div class='pending'>⏳ Verification Pending</div>
+        <div style='font-size:12px;color:#666;'>Checked by KHUSINDIA Team</div>
+    `;
+
+    localStorage.setItem("sellerStatus","pending");
+}
+
+function khusindiaTeamApprove(){
+
+    localStorage.setItem("sellerStatus","approved");
+
+    document.getElementById("statusBox").innerHTML=`
+        <div class='status'>✔ Approved by KHUSINDIA Team</div>
+        <div style='font-size:12px;color:#666;'>Your seller account is now active</div>
+    `;
+
+    document.getElementById("dashboardBtn").style.display="block";
+}
+
+function goDashboard(){
+
+    if(localStorage.getItem("sellerStatus")==="approved"){
+        window.location.href="seller-dashboard.html";
+    }else{
+        alert("Your account is still under KHUSINDIA review");
+    }
+}
+
+window.onload=function(){
+    if(localStorage.getItem("sellerStatus")==="approved"){
+        document.getElementById("dashboardBtn").style.display="block";
+    }
+}
+
+function goBack(){
+    window.location.href = "sell.html";
+}
+
+</script>
+
+</body>
+</html>
