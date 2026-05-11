@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>My Account</title>
+<title>Account</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
@@ -12,110 +11,65 @@
 
 body{
     margin:0;
-    font-family:Poppins, sans-serif;
+    font-family:Poppins,sans-serif;
     background:#f4f5f7;
 }
 
 /* HEADER */
 .header{
-    height:52px;
     background:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:sticky;
-    top:0;
+    padding:18px;
     border-bottom:1px solid #eee;
 }
 
-.back-btn{
-    position:absolute;
-    left:14px;
-    font-size:20px;
-    cursor:pointer;
-    color:#333;
-}
-
-.header-title{
-    font-size:15px;
+.user-box{
+    font-size:18px;
     font-weight:600;
-    color:#222;
 }
 
-/* GREETING CARD */
-.greet-box{
-    background:#fff;
-    margin:10px;
-    padding:18px;
-    border-radius:14px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.05);
-}
-
-.greet-box h2{
-    margin:0;
-    font-size:17px;
-    color:#222;
-}
-
-.greet-box p{
-    margin:5px 0 0;
-    font-size:13px;
+.sub{
+    font-size:12px;
     color:#777;
+    margin-top:4px;
 }
 
-/* MENU CARD */
+.btn{
+    margin-top:10px;
+    padding:10px;
+    border:none;
+    background:#111;
+    color:#fff;
+    border-radius:10px;
+    cursor:pointer;
+    width:100%;
+}
+
+/* MENU */
 .menu{
-    margin:10px;
+    margin:12px;
     background:#fff;
-    border-radius:14px;
+    border-radius:12px;
     overflow:hidden;
-    box-shadow:0 2px 8px rgba(0,0,0,0.05);
 }
 
 /* ITEM */
 .item{
     padding:14px;
-    display:flex;
-    align-items:center;
-    gap:12px;
     border-bottom:1px solid #eee;
-    cursor:pointer;
     font-size:14px;
-    color:#222;
-    transition:0.2s;
-}
-
-.item i{
-    color:#444;
-    width:22px;
-    font-size:16px;
-}
-
-.item:hover{
-    background:#f7f7f7;
-}
-
-/* LAST ITEM BORDER REMOVE */
-.item:last-child{
-    border-bottom:none;
-}
-
-/* LOGOUT */
-.logout{
-    margin:10px;
-    background:#fff;
-    padding:14px;
-    text-align:center;
-    border-radius:14px;
-    color:#e53935;
-    font-weight:600;
+    display:flex;
+    justify-content:space-between;
     cursor:pointer;
-    box-shadow:0 2px 8px rgba(0,0,0,0.05);
-    transition:0.2s;
 }
 
-.logout:hover{
-    background:#fff3f3;
+.logout{
+    color:red;
+    font-weight:600;
+}
+
+/* HIDE */
+.hidden{
+    display:none;
 }
 
 </style>
@@ -126,95 +80,114 @@ body{
 <!-- HEADER -->
 <div class="header">
 
-    <i class="fa-solid fa-arrow-left back-btn"></i>
+    <div id="userBox" class="user-box">Hello User 👋</div>
+    <div class="sub">Manage your account</div>
 
-    <div class="header-title">My Account</div>
-
-</div>
-
-<!-- GREETING -->
-<div class="greet-box">
-
-    <h2 id="username">Hello 👋 User</h2>
-    <p>Manage your account settings & preferences</p>
+    <button id="authBtn" class="btn">Sign In</button>
 
 </div>
 
 <!-- MENU -->
-<div class="menu">
+<div id="menuBox" class="menu hidden">
 
-    <div class="item" onclick="location.href='language.html'">
-        <i class="fa-solid fa-language"></i>
-        Change Language
+    <!-- SECURE SECTION (LOGIN ONLY) -->
+    <div id="secureSection">
+
+        <div class="item" onclick="go('edit-address.html')">
+            Edit Profile <i class="fa-solid fa-angle-right"></i>
+        </div>
+
+        <div class="item" onclick="go('bank.html')">
+            Bank Details <i class="fa-solid fa-angle-right"></i>
+        </div>
+
+        <div class="item" onclick="go('address.html')">
+            Saved Address <i class="fa-solid fa-angle-right"></i>
+        </div>
+
+        <div class="item" onclick="go('wishlist.html')">
+            My Wishlist <i class="fa-solid fa-angle-right"></i>
+        </div>
+
     </div>
 
-    <div class="item" onclick="location.href='edit-address.html'">
-    <i class="fa-solid fa-user-pen"></i>
-    Edit Profile
-</div>
+    <!-- COMMON MENU -->
+    <div class="item">Choose Language <i class="fa-solid fa-angle-right"></i></div>
+    <div class="item">Sell on KhusIndia <i class="fa-solid fa-angle-right"></i></div>
+    <div class="item">Help <i class="fa-solid fa-angle-right"></i></div>
+    <div class="item">Privacy Policy <i class="fa-solid fa-angle-right"></i></div>
+    <div class="item">Terms & Conditions <i class="fa-solid fa-angle-right"></i></div>
 
-    <div class="item" onclick="location.href='bank.html'">
-        <i class="fa-solid fa-building-columns"></i>
-        Bank Details
-    </div>
+    <div class="item logout" onclick="logout()">Logout</div>
 
-    <div class="item" onclick="location.href='address.html'">
-        <i class="fa-solid fa-location-dot"></i>
-        Saved Addresses
-    </div>
-
-    <div class="item" onclick="location.href='sell.html'">
-        <i class="fa-solid fa-store"></i>
-        Sell on KhusIndia
-    </div>
-
-    <div class="item" onclick="location.href='help.html'">
-        <i class="fa-solid fa-circle-question"></i>
-        Help & Support
-    </div>
-
-    <div class="item" onclick="location.href='terms.html'">
-        <i class="fa-solid fa-file-lines"></i>
-        Terms & Conditions
-    </div>
-
-    <div class="item" onclick="location.href='policy.html'">
-        <i class="fa-solid fa-shield"></i>
-        Privacy Policy
-    </div>
-
-</div>
-
-<!-- LOGOUT -->
-<div class="logout" id="logoutBtn">
-    Logout
 </div>
 
 <script>
 
-/* BACK */
-document.querySelector(".back-btn")
-.addEventListener("click", () => history.back());
+/* =========================
+   FULL DYNAMIC INIT
+========================= */
 
-/* USER */
-window.addEventListener("DOMContentLoaded", function(){
+function init(){
 
-    let user = localStorage.getItem("username");
+    const user = localStorage.getItem("username");
 
-    if(user){
-        document.getElementById("username").innerText = "Hello 👋 " + user;
+    const userBox = document.getElementById("userBox");
+    const authBtn = document.getElementById("authBtn");
+    const menuBox = document.getElementById("menuBox");
+    const secureSection = document.getElementById("secureSection");
+
+    // =========================
+    // GUEST MODE
+    // =========================
+    if(!user || user.trim() === ""){
+
+        userBox.innerText = "Hello User 👋";
+
+        authBtn.innerText = "Sign In";
+
+        menuBox.classList.add("hidden");
+
+        secureSection.style.display = "none";
+
+        authBtn.onclick = function(){
+            window.location.href = "login.html";
+        };
+
     }
 
-});
+    // =========================
+    // LOGIN MODE (ANY USER)
+    // =========================
+    else{
+
+        userBox.innerText = "Hello " + user + " 👋";
+
+        authBtn.innerText = "My Account";
+
+        menuBox.classList.remove("hidden");
+
+        secureSection.style.display = "block";
+
+        authBtn.onclick = function(){
+            menuBox.classList.toggle("hidden");
+        };
+
+    }
+}
+
+init();
+
+/* NAVIGATION */
+function go(page){
+    window.location.href = page;
+}
 
 /* LOGOUT */
-document.getElementById("logoutBtn")
-.addEventListener("click", function(){
-
-    localStorage.clear();
-    window.location.href = "index.html";
-
-});
+function logout(){
+    localStorage.removeItem("username");
+    location.reload();
+}
 
 </script>
 
