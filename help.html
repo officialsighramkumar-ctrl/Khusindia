@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Help Center</title>
+
+<!-- ICONS -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f5f5f5;
+    color:#111;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+    height:56px;
+    background:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 16px;
+
+    border-bottom:1px solid #eee;
+
+    position:sticky;
+    top:0;
+    z-index:999;
+}
+
+.nav-left i{
+    font-size:20px;
+    cursor:pointer;
+    color:#111;
+}
+
+.nav-title{
+    font-size:16px;
+    font-weight:600;
+    color:#111;
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.nav-right i{
+    font-size:19px;
+    cursor:pointer;
+    color:#111;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.help-header{
+    background:#fff;
+
+    padding:26px 18px;
+
+    border-bottom:1px solid #eee;
+}
+
+.help-header h2{
+    font-size:24px;
+    font-weight:600;
+    color:#111;
+}
+
+.help-header p{
+    margin-top:8px;
+
+    font-size:13px;
+    color:#666;
+
+    line-height:1.5;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section{
+    padding:14px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.help-card{
+    background:#fff;
+
+    border-radius:16px;
+
+    padding:16px;
+
+    margin-bottom:12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+.help-card:active{
+    transform:scale(0.98);
+}
+
+.help-left{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.help-icon{
+    width:44px;
+    height:44px;
+
+    border-radius:12px;
+
+    background:#f1f3f6;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.help-icon i{
+    font-size:18px;
+    color:#111;
+}
+
+.help-text h4{
+    font-size:14px;
+    font-weight:600;
+    color:#111;
+}
+
+.help-text p{
+    margin-top:4px;
+
+    font-size:12px;
+    color:#777;
+}
+
+/* =========================
+   FAQ
+========================= */
+
+.faq-title{
+    margin-bottom:12px;
+
+    font-size:16px;
+    font-weight:600;
+}
+
+.faq-box{
+    background:#fff;
+
+    border-radius:16px;
+
+    overflow:hidden;
+}
+
+.faq-item{
+    padding:16px;
+
+    border-bottom:1px solid #eee;
+}
+
+.faq-item:last-child{
+    border-bottom:none;
+}
+
+.faq-q{
+    font-size:14px;
+    font-weight:600;
+    color:#111;
+}
+
+.faq-a{
+    margin-top:8px;
+
+    font-size:13px;
+    color:#666;
+
+    line-height:1.5;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+
+    <div class="nav-left">
+
+        <i class="fa-solid fa-arrow-left"
+        onclick="goBack()"></i>
+
+    </div>
+
+    <div class="nav-title">
+        Help Center
+    </div>
+
+    <div class="nav-right">
+
+        <i class="fa-solid fa-magnifying-glass"
+        onclick="window.location.href='search.html'"></i>
+
+        <i class="fa-solid fa-cart-shopping"
+        onclick="window.location.href='cart.html'"></i>
+
+    </div>
+
+</div>
+
+<!-- HEADER -->
+<div class="help-header">
+
+    <h2>How can we help?</h2>
+
+    <p>
+        Get support for your orders,
+        payments, returns and more.
+    </p>
+
+</div>
+
+<!-- SUPPORT SECTION -->
+<div class="section">
+
+    <!-- ORDERS -->
+    <div class="help-card"
+    onclick="window.location.href='orders-help.html'">
+
+        <div class="help-left">
+
+            <div class="help-icon">
+                <i class="fa-solid fa-box"></i>
+            </div>
+
+            <div class="help-text">
+
+                <h4>Orders</h4>
+
+                <p>
+                    Track, cancel or manage orders
+                </p>
+
+            </div>
+
+        </div>
+
+        <i class="fa-solid fa-angle-right"></i>
+
+    </div>
+
+    <!-- PAYMENTS -->
+    <div class="help-card"
+    onclick="window.location.href='payments-help.html'">
+
+        <div class="help-left">
+
+            <div class="help-icon">
+                <i class="fa-solid fa-wallet"></i>
+            </div>
+
+            <div class="help-text">
+
+                <h4>Payments</h4>
+
+                <p>
+                    Payment failed or pending issues
+                </p>
+
+            </div>
+
+        </div>
+
+        <i class="fa-solid fa-angle-right"></i>
+
+    </div>
+
+    <!-- RETURNS -->
+    <div class="help-card"
+    onclick="window.location.href='returns-help.html'">
+
+        <div class="help-left">
+
+            <div class="help-icon">
+                <i class="fa-solid fa-arrow-rotate-left"></i>
+            </div>
+
+            <div class="help-text">
+
+                <h4>Returns & Refunds</h4>
+
+                <p>
+                    Refund and return related help
+                </p>
+
+            </div>
+
+        </div>
+
+        <i class="fa-solid fa-angle-right"></i>
+
+    </div>
+
+    <!-- AI SUPPORT -->
+    <div class="help-card"
+    onclick="window.location.href='support-chat.html'">
+
+        <div class="help-left">
+
+            <div class="help-icon">
+                <i class="fa-solid fa-headset"></i>
+            </div>
+
+            <div class="help-text">
+
+                <h4>Talk With Us</h4>
+
+                <p>
+                    Chat instantly with our AI support
+                </p>
+
+            </div>
+
+        </div>
+
+        <i class="fa-solid fa-angle-right"></i>
+
+    </div>
+
+</div>
+
+<!-- FAQ -->
+<div class="section">
+
+    <div class="faq-title">
+        Frequently Asked Questions
+    </div>
+
+    <div class="faq-box">
+
+        <!-- FAQ 1 -->
+        <div class="faq-item">
+
+            <div class="faq-q">
+                How can I track my order?
+            </div>
+
+            <div class="faq-a">
+                Open My Orders section and tap
+                on Track Order.
+            </div>
+
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item">
+
+            <div class="faq-q">
+                How long does refund take?
+            </div>
+
+            <div class="faq-a">
+                Refund usually takes 3-7 business
+                days after approval.
+            </div>
+
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item">
+
+            <div class="faq-q">
+                Can I cancel my order?
+            </div>
+
+            <div class="faq-a">
+                Yes, before the order gets shipped.
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* BACK */
+
+function goBack(){
+
+    if(history.length > 1){
+
+        history.back();
+
+    }else{
+
+        window.location.href = "index.html";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
