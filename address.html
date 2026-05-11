@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Manage Address</title>
+
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+rel="stylesheet">
+
+<!-- ICON -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+/* =========================
+   BASIC
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f1f3f6;
+}
+
+/* PAGE */
+.address-page{
+    max-width:420px;
+    margin:auto;
+    min-height:100vh;
+    background:#f1f3f6;
+    padding-bottom:90px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    height:52px;
+    background:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    border-bottom:1px solid #eee;
+
+    padding:0 14px;
+}
+
+/* BACK */
+.back-btn{
+    position:absolute;
+    left:14px;
+
+    font-size:21px;
+    color:#333;
+
+    cursor:pointer;
+}
+
+/* TITLE */
+.header-title{
+    font-size:15px;
+    font-weight:600;
+    color:#222;
+}
+
+/* RIGHT */
+.header-right{
+    position:absolute;
+    right:14px;
+
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+
+.header-right i{
+    font-size:18px;
+    color:#444;
+    cursor:pointer;
+}
+
+/* =========================
+   SAVED BOX
+========================= */
+
+.saved-box{
+    background:#fff;
+    margin:10px;
+    padding:14px;
+    border-radius:12px;
+}
+
+/* TITLE */
+.box-title{
+    font-size:14px;
+    font-weight:700;
+    color:#222;
+    margin-bottom:12px;
+}
+
+/* ADDRESS CARD */
+.saved-address{
+    border:1px solid #eee;
+    border-radius:10px;
+    padding:12px;
+    margin-bottom:10px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.saved-address:hover{
+    border-color:#2874f0;
+    background:#f8fbff;
+}
+
+.saved-address h4{
+    font-size:14px;
+    color:#111;
+    margin-bottom:6px;
+}
+
+.saved-address p{
+    font-size:12px;
+    color:#666;
+    line-height:1.6;
+}
+
+/* ADDRESS TOP */
+.address-top{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+}
+
+/* DELETE */
+.delete-btn{
+    font-size:16px;
+    color:#ff4d4f;
+    cursor:pointer;
+    margin-top:3px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form-box{
+    background:#fff;
+    margin:10px;
+    padding:14px;
+    border-radius:12px;
+}
+
+/* INPUT */
+.input-box{
+    margin-bottom:14px;
+}
+
+.input-box label{
+    display:block;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:7px;
+    color:#222;
+}
+
+.input-box input,
+.input-box textarea{
+    width:100%;
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:12px;
+
+    font-size:13px;
+    outline:none;
+
+    font-family:'Poppins',sans-serif;
+}
+
+/* TEXTAREA */
+.input-box textarea{
+    resize:none;
+    height:90px;
+}
+
+/* SAVE BUTTON */
+.save-btn{
+    position:fixed;
+    bottom:0;
+
+    width:100%;
+    max-width:420px;
+
+    height:60px;
+
+    border:none;
+    background:#2874f0;
+
+    color:#fff;
+
+    font-size:15px;
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+/* MOBILE */
+@media(max-width:480px){
+
+    .address-page{
+        max-width:100%;
+    }
+
+    .save-btn{
+        max-width:100%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="address-page">
+
+    <!-- HEADER -->
+    <div class="header">
+
+        <!-- BACK -->
+        <i class="fa-solid fa-arrow-left
+        back-btn"></i>
+
+        <!-- TITLE -->
+        <div class="header-title">
+
+            Manage Address
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="header-right">
+
+            <i class="fa-solid
+            fa-magnifying-glass"></i>
+
+            <i class="fa-solid
+            fa-bag-shopping"></i>
+
+        </div>
+
+    </div>
+
+
+    <!-- SAVED ADDRESSES -->
+    <div class="saved-box">
+
+        <div class="box-title">
+
+            Saved Addresses
+
+        </div>
+
+        <div id="savedAddresses"></div>
+
+    </div>
+
+
+    <!-- FORM -->
+    <div class="form-box">
+
+        <div class="box-title">
+
+            Add New Address
+
+        </div>
+
+        <!-- NAME -->
+        <div class="input-box">
+
+            <label>Full Name</label>
+
+            <input type="text"
+            id="name">
+
+        </div>
+
+
+        <!-- PHONE -->
+        <div class="input-box">
+
+            <label>Phone Number</label>
+
+            <input type="tel"
+            id="phone">
+
+        </div>
+
+
+        <!-- PIN -->
+        <div class="input-box">
+
+            <label>PIN Code</label>
+
+            <input type="number"
+            id="pin">
+
+        </div>
+
+
+        <!-- CITY -->
+        <div class="input-box">
+
+            <label>City</label>
+
+            <input type="text"
+            id="city">
+
+        </div>
+
+
+        <!-- STATE -->
+        <div class="input-box">
+
+            <label>State</label>
+
+            <input type="text"
+            id="state">
+
+        </div>
+
+
+        <!-- ADDRESS -->
+        <div class="input-box">
+
+            <label>House No, Building & Area</label>
+
+            <textarea id="address"></textarea>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- SAVE -->
+<button class="save-btn"
+id="saveBtn">
+
+    Save Address
+
+</button>
+
+<script>
+
+/* BACK */
+document.querySelector(".back-btn")
+.addEventListener("click", function(){
+
+    if(history.length > 1){
+
+        history.back();
+
+    }else{
+
+        window.location.href =
+        "checkout.html";
+
+    }
+
+});
+
+
+/* SEARCH */
+document.querySelector(
+".fa-magnifying-glass"
+)
+.addEventListener("click", function(){
+
+    window.location.href =
+    "search.html";
+
+});
+
+
+/* BAG */
+document.querySelector(
+".fa-bag-shopping"
+)
+.addEventListener("click", function(){
+
+    window.location.href =
+    "cart.html";
+
+});
+
+
+/* =========================
+   ALL ADDRESSES
+========================= */
+
+let addresses =
+JSON.parse(
+localStorage.getItem(
+"allAddresses"
+)
+) || [];
+
+
+/* =========================
+   RENDER ADDRESSES
+========================= */
+
+function renderAddresses(){
+
+    const container =
+    document.getElementById(
+    "savedAddresses"
+    );
+
+    container.innerHTML = "";
+
+
+    /* NO ADDRESS */
+    if(addresses.length === 0){
+
+        container.innerHTML = `
+
+        <p style="
+        font-size:13px;
+        color:#777;
+        ">
+
+        No Saved Address
+
+        </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* LOOP */
+    addresses.forEach((item,index)=>{
+
+        container.innerHTML += `
+
+        <div class="saved-address">
+
+            <!-- TOP -->
+            <div class="address-top">
+
+                <!-- ADDRESS -->
+                <div
+                onclick="selectAddress(${index})"
+                style="flex:1;cursor:pointer;">
+
+                    <h4>${item.name}</h4>
+
+                    <p>
+
+                        ${item.address}<br>
+
+                        ${item.city},
+                        ${item.state}<br>
+
+                        PIN - ${item.pin}<br>
+
+                        Phone: ${item.phone}
+
+                    </p>
+
+                </div>
+
+                <!-- DELETE -->
+                <i class="fa-solid fa-trash delete-btn"
+                onclick="deleteAddress(${index})"></i>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+/* =========================
+   SELECT ADDRESS
+========================= */
+
+function selectAddress(index){
+
+    const item =
+    addresses[index];
+
+
+    localStorage.setItem(
+    "checkoutName",
+    item.name
+    );
+
+    localStorage.setItem(
+    "checkoutAddress",
+
+    `${item.address},
+    ${item.city},
+    ${item.state}`
+
+    );
+
+    localStorage.setItem(
+    "checkoutPin",
+    item.pin
+    );
+
+    localStorage.setItem(
+    "checkoutPhone",
+    item.phone
+    );
+
+
+    alert("Address Selected");
+
+
+    window.location.href =
+    "checkout.html";
+
+}
+
+
+/* =========================
+   DELETE ADDRESS
+========================= */
+
+function deleteAddress(index){
+
+    let confirmDelete =
+    confirm(
+    "Remove this address?"
+    );
+
+    if(!confirmDelete) return;
+
+
+    /* REMOVE */
+    addresses.splice(index, 1);
+
+
+    /* SAVE AGAIN */
+    localStorage.setItem(
+
+        "allAddresses",
+
+        JSON.stringify(addresses)
+
+    );
+
+
+    /* REMOVE ACTIVE ADDRESS */
+    if(addresses.length === 0){
+
+        localStorage.removeItem(
+        "checkoutName"
+        );
+
+        localStorage.removeItem(
+        "checkoutAddress"
+        );
+
+        localStorage.removeItem(
+        "checkoutPin"
+        );
+
+        localStorage.removeItem(
+        "checkoutPhone"
+        );
+
+    }
+
+
+    /* REFRESH */
+    renderAddresses();
+
+}
+
+
+/* =========================
+   SAVE NEW ADDRESS
+========================= */
+
+document.getElementById("saveBtn")
+.addEventListener("click", function(){
+
+
+    const name =
+    document.getElementById(
+    "name"
+    ).value.trim();
+
+
+    const phone =
+    document.getElementById(
+    "phone"
+    ).value.trim();
+
+
+    const pin =
+    document.getElementById(
+    "pin"
+    ).value.trim();
+
+
+    const city =
+    document.getElementById(
+    "city"
+    ).value.trim();
+
+
+    const state =
+    document.getElementById(
+    "state"
+    ).value.trim();
+
+
+    const address =
+    document.getElementById(
+    "address"
+    ).value.trim();
+
+
+    /* VALIDATION */
+    if(
+        !name ||
+        !phone ||
+        !pin ||
+        !city ||
+        !state ||
+        !address
+    ){
+
+        alert(
+        "Fill all details"
+        );
+
+        return;
+
+    }
+
+
+    /* NEW OBJECT */
+    const newAddress = {
+
+        name:name,
+        phone:phone,
+        pin:pin,
+        city:city,
+        state:state,
+        address:address
+
+    };
+
+
+    /* PUSH */
+    addresses.push(newAddress);
+
+
+    /* SAVE ARRAY */
+    localStorage.setItem(
+
+        "allAddresses",
+
+        JSON.stringify(addresses)
+
+    );
+
+
+    /* SET ACTIVE */
+    localStorage.setItem(
+    "checkoutName",
+    name
+    );
+
+    localStorage.setItem(
+    "checkoutAddress",
+
+    `${address},
+    ${city},
+    ${state}`
+
+    );
+
+    localStorage.setItem(
+    "checkoutPin",
+    pin
+    );
+
+    localStorage.setItem(
+    "checkoutPhone",
+    phone
+    );
+
+
+    alert("Address Added");
+
+
+    window.location.href =
+    "checkout.html";
+
+});
+
+
+/* LOAD */
+window.onload =
+renderAddresses;
+
+</script>
+
+</body>
+</html>

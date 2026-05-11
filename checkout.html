@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Checkout</title>
+
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+rel="stylesheet">
+
+<!-- ICON -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+/* =========================
+   BASIC
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f1f3f6;
+}
+
+/* PAGE */
+.checkout-page{
+    max-width:420px;
+    margin:auto;
+    min-height:100vh;
+    background:#f1f3f6;
+    padding-bottom:100px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    height:52px;
+    background:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    border-bottom:1px solid #eee;
+
+    padding:0 14px;
+}
+
+/* BACK */
+.back-btn{
+    position:absolute;
+    left:14px;
+
+    font-size:21px;
+    color:#333;
+
+    cursor:pointer;
+}
+
+/* TITLE */
+.header-title{
+    font-size:15px;
+    font-weight:600;
+    color:#222;
+}
+
+/* RIGHT */
+.header-right{
+    position:absolute;
+    right:14px;
+
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+
+.header-right i{
+    font-size:18px;
+    color:#444;
+    cursor:pointer;
+}
+
+/* =========================
+   BOX
+========================= */
+
+.box{
+    background:#fff;
+
+    margin:10px;
+
+    border-radius:12px;
+
+    padding:14px;
+}
+
+/* TITLE */
+.box-title{
+    font-size:14px;
+    font-weight:700;
+
+    color:#222;
+
+    margin-bottom:14px;
+}
+
+/* =========================
+   ADDRESS
+========================= */
+
+.address-name{
+    font-size:14px;
+    font-weight:600;
+
+    color:#111;
+}
+
+.address-text{
+    margin-top:5px;
+
+    font-size:13px;
+    color:#666;
+
+    line-height:1.6;
+}
+
+/* ADDRESS TOP */
+.address-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:12px;
+}
+
+/* CHANGE BTN */
+.change-btn{
+    font-size:13px;
+    font-weight:600;
+
+    color:#2874f0;
+
+    cursor:pointer;
+}
+
+/* EDIT BTN */
+.edit-btn{
+    margin-top:12px;
+
+    display:inline-block;
+
+    font-size:13px;
+    font-weight:600;
+
+    color:#2874f0;
+
+    cursor:pointer;
+}
+
+/* =========================
+   PRODUCT
+========================= */
+
+.product{
+    display:flex;
+    gap:12px;
+}
+
+/* IMAGE */
+.product-image{
+    width:80px;
+    height:95px;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    background:#eee;
+}
+
+.product-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* INFO */
+.product-info{
+    flex:1;
+}
+
+.product-name{
+    font-size:14px;
+    font-weight:600;
+
+    color:#222;
+
+    line-height:1.5;
+}
+
+.product-size{
+    margin-top:6px;
+
+    font-size:12px;
+    color:#777;
+}
+
+.product-price{
+    margin-top:8px;
+
+    font-size:17px;
+    font-weight:700;
+
+    color:#111;
+}
+
+/* =========================
+   COUPON
+========================= */
+
+.coupon-box{
+    display:flex;
+    gap:10px;
+}
+
+/* INPUT */
+.coupon-box input{
+    flex:1;
+
+    height:44px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    padding:0 12px;
+
+    outline:none;
+
+    font-size:13px;
+}
+
+/* APPLY */
+.apply-btn{
+    width:90px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#2874f0;
+
+    color:#fff;
+
+    font-size:13px;
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+/* =========================
+   PAYMENT
+========================= */
+
+.payment-option{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:12px 0;
+
+    border-bottom:1px solid #f1f1f1;
+
+    font-size:14px;
+
+    color:#222;
+
+    cursor:pointer;
+}
+
+.payment-option:last-child{
+    border-bottom:none;
+}
+
+.payment-option input{
+    accent-color:#2874f0;
+}
+
+/* =========================
+   PRICE
+========================= */
+
+.price-row{
+    display:flex;
+    justify-content:space-between;
+
+    margin-bottom:12px;
+
+    font-size:13px;
+
+    color:#444;
+}
+
+.total{
+    border-top:1px solid #eee;
+
+    padding-top:12px;
+
+    font-size:15px;
+    font-weight:700;
+
+    color:#111;
+}
+
+/* =========================
+   BOTTOM BAR
+========================= */
+
+.bottom-bar{
+    position:fixed;
+    bottom:0;
+
+    width:100%;
+    max-width:420px;
+
+    background:#fff;
+
+    border-top:1px solid #eee;
+
+    padding:10px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+/* TOTAL */
+.bottom-total h3{
+    font-size:17px;
+    color:#111;
+}
+
+.bottom-total p{
+    font-size:12px;
+    color:green;
+}
+
+/* BTN */
+.place-btn{
+    height:46px;
+
+    padding:0 28px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#2874f0;
+
+    color:#fff;
+
+    font-size:14px;
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+/* MOBILE */
+@media(max-width:480px){
+
+    .checkout-page{
+        max-width:100%;
+    }
+
+    .bottom-bar{
+        max-width:100%;
+    }
+
+}
+
+
+</style>
+</head>
+
+<body>
+
+    <div class="checkout-page">
+
+    <!-- HEADER -->
+    <div class="header">
+
+        <i class="fa-solid fa-arrow-left back-btn"></i>
+
+        <div class="header-title">
+            Checkout
+        </div>
+
+        <div class="header-right">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <i class="fa-solid fa-bag-shopping"></i>
+
+        </div>
+
+    </div>
+
+
+    <!-- ADDRESS BOX -->
+    <div class="box">
+
+        <div class="address-top">
+
+            <div class="box-title">
+                Delivery Address
+            </div>
+
+            <div class="change-btn"
+                id="changeAddressBtn"
+                style="display:none;">
+                Change Address
+            </div>
+
+        </div>
+
+        <div class="address-name" id="userName"></div>
+
+        <div class="address-text" id="userAddress"></div>
+
+        <div class="edit-btn"
+            id="editAddressBtn"
+            style="display:none;">
+            Edit Address
+        </div>
+
+    </div>
+
+
+    <!-- PRODUCT SUMMARY -->
+    <div class="box" id="orderBox">
+
+        <div class="box-title">
+            Order Summary
+        </div>
+
+        <div class="product">
+
+            <div class="product-image">
+                <img id="productImage" src="product1.jpg">
+            </div>
+
+            <div class="product-info">
+
+                <div class="product-name" id="productName">
+                    Stylish Oversized Hoodie
+                </div>
+
+                <div class="product-size" id="productSize">
+                    Size: M
+                </div>
+
+                <div class="product-price" id="productPrice">
+                    ₹899
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- COUPON -->
+    <div class="box">
+
+        <div class="box-title">
+            Apply Coupon
+        </div>
+
+        <div class="coupon-box">
+
+            <input type="text" placeholder="Enter Coupon Code">
+
+            <button class="apply-btn">
+                Apply
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- PRICE DETAILS -->
+<div class="box">
+
+    <div class="box-title">
+        Price Details
+    </div>
+
+    <div class="price-row">
+        <span>Product Price</span>
+        <span id="priceValue">₹0</span>
+    </div>
+
+    <div class="price-row">
+        <span>Delivery</span>
+        <span style="color:green;">FREE</span>
+    </div>
+
+    <div class="price-row total">
+        <span>Total Amount</span>
+        <span id="totalValue">₹0</span>
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- BOTTOM BAR -->
+<div class="bottom-bar">
+
+    <div class="bottom-total">
+
+        <h3 id="bottomPrice">₹899</h3>
+
+        <p>Free Delivery</p>
+
+    </div>
+
+    <button class="place-btn">
+        Continue
+    </button>
+
+</div>
+
+<script>
+
+/* =========================
+   NAV BUTTONS
+========================= */
+
+document.querySelector(".back-btn")
+.addEventListener("click", function () {
+    history.length > 1 ? history.back() : window.location.href = "cart.html";
+});
+
+document.querySelector(".fa-magnifying-glass")
+.addEventListener("click", function () {
+    window.location.href = "search.html";
+});
+
+document.querySelector(".fa-bag-shopping")
+.addEventListener("click", function () {
+    window.location.href = "cart.html";
+});
+
+
+/* =========================
+   COUPON
+========================= */
+
+document.querySelector(".apply-btn")
+.addEventListener("click", function () {
+    alert("Coupon Applied");
+});
+
+
+/* =========================
+   CONTINUE
+========================= */
+
+document.querySelector(".place-btn")
+.addEventListener("click", function () {
+    window.location.href = "payment.html";
+});
+
+
+/* =========================
+   ADDRESS HANDLING
+========================= */
+
+function loadAddress() {
+
+    const name = localStorage.getItem("checkoutName");
+    const address = localStorage.getItem("checkoutAddress");
+    const pin = localStorage.getItem("checkoutPin");
+    const phone = localStorage.getItem("checkoutPhone");
+
+    const userName = document.getElementById("userName");
+    const userAddress = document.getElementById("userAddress");
+    const editBtn = document.getElementById("editAddressBtn");
+    const changeBtn = document.getElementById("changeAddressBtn");
+
+    if (!name) {
+
+        userName.innerHTML = `
+            <div id="addAddressBtn"
+            style="color:#2874f0;font-weight:600;cursor:pointer;">
+                + Add Address
+            </div>
+        `;
+
+        userAddress.style.display = "none";
+        editBtn.style.display = "none";
+        changeBtn.style.display = "none";
+
+        document.getElementById("addAddressBtn")
+        .addEventListener("click", function () {
+            window.location.href = "address.html";
+        });
+
+        return;
+    }
+
+    userName.innerText = name;
+    userAddress.style.display = "block";
+
+    userAddress.innerHTML = `
+        ${address}<br>
+        PIN - ${pin}<br>
+        Phone: ${phone}
+    `;
+
+    editBtn.style.display = "inline-block";
+    changeBtn.style.display = "block";
+}
+
+
+/* =========================
+   ADDRESS BUTTONS
+========================= */
+
+document.getElementById("editAddressBtn")
+.addEventListener("click", function () {
+    window.location.href = "edit-address.html";
+});
+
+document.getElementById("changeAddressBtn")
+.addEventListener("click", function () {
+    window.location.href = "address.html";
+});
+
+
+/* =========================
+   PRODUCT + PRICE LOAD
+========================= */
+
+function loadProduct() {
+
+    const img = localStorage.getItem("checkoutProductImage");
+    const name = localStorage.getItem("checkoutProductName");
+    const price = localStorage.getItem("checkoutProductPrice");
+    const size = localStorage.getItem("checkoutProductSize");
+
+    if (!name) {
+        document.getElementById("orderBox").innerHTML =
+        `<p style="padding:10px;color:#777;">No product selected</p>`;
+        return;
+    }
+
+    document.querySelector(".product-image img").src = img || "product1.jpg";
+    document.querySelector(".product-name").innerText = name;
+    document.querySelector(".product-size").innerText = size || "";
+    document.querySelector(".product-price").innerText = price;
+
+    document.getElementById("priceValue").innerText = price;
+    document.getElementById("totalValue").innerText = price;
+    document.getElementById("bottomPrice").innerText = price;
+}
+
+
+/* =========================
+   INIT
+========================= */
+
+window.addEventListener("DOMContentLoaded", function () {
+    loadAddress();
+    loadProduct();
+});
+
+</script>
+
+
+</body>
+</html>

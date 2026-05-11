@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Account</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Poppins, sans-serif;
+    background:#f4f5f7;
+}
+
+/* HEADER */
+.header{
+    height:52px;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:sticky;
+    top:0;
+    border-bottom:1px solid #eee;
+}
+
+.back-btn{
+    position:absolute;
+    left:14px;
+    font-size:20px;
+    cursor:pointer;
+    color:#333;
+}
+
+.header-title{
+    font-size:15px;
+    font-weight:600;
+    color:#222;
+}
+
+/* GREETING CARD */
+.greet-box{
+    background:#fff;
+    margin:10px;
+    padding:18px;
+    border-radius:14px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+
+.greet-box h2{
+    margin:0;
+    font-size:17px;
+    color:#222;
+}
+
+.greet-box p{
+    margin:5px 0 0;
+    font-size:13px;
+    color:#777;
+}
+
+/* MENU CARD */
+.menu{
+    margin:10px;
+    background:#fff;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* ITEM */
+.item{
+    padding:14px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    border-bottom:1px solid #eee;
+    cursor:pointer;
+    font-size:14px;
+    color:#222;
+    transition:0.2s;
+}
+
+.item i{
+    color:#444;
+    width:22px;
+    font-size:16px;
+}
+
+.item:hover{
+    background:#f7f7f7;
+}
+
+/* LAST ITEM BORDER REMOVE */
+.item:last-child{
+    border-bottom:none;
+}
+
+/* LOGOUT */
+.logout{
+    margin:10px;
+    background:#fff;
+    padding:14px;
+    text-align:center;
+    border-radius:14px;
+    color:#e53935;
+    font-weight:600;
+    cursor:pointer;
+    box-shadow:0 2px 8px rgba(0,0,0,0.05);
+    transition:0.2s;
+}
+
+.logout:hover{
+    background:#fff3f3;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+
+    <i class="fa-solid fa-arrow-left back-btn"></i>
+
+    <div class="header-title">My Account</div>
+
+</div>
+
+<!-- GREETING -->
+<div class="greet-box">
+
+    <h2 id="username">Hello 👋 User</h2>
+    <p>Manage your account settings & preferences</p>
+
+</div>
+
+<!-- MENU -->
+<div class="menu">
+
+    <div class="item" onclick="location.href='language.html'">
+        <i class="fa-solid fa-language"></i>
+        Change Language
+    </div>
+
+    <div class="item" onclick="location.href='edit-profile.html'">
+        <i class="fa-solid fa-user-pen"></i>
+        Edit Profile
+    </div>
+
+    <div class="item" onclick="location.href='bank.html'">
+        <i class="fa-solid fa-building-columns"></i>
+        Bank Details
+    </div>
+
+    <div class="item" onclick="location.href='address.html'">
+        <i class="fa-solid fa-location-dot"></i>
+        Saved Addresses
+    </div>
+
+    <div class="item" onclick="location.href='sell.html'">
+        <i class="fa-solid fa-store"></i>
+        Sell on KhusIndia
+    </div>
+
+    <div class="item" onclick="location.href='help.html'">
+        <i class="fa-solid fa-circle-question"></i>
+        Help & Support
+    </div>
+
+    <div class="item" onclick="location.href='terms.html'">
+        <i class="fa-solid fa-file-lines"></i>
+        Terms & Conditions
+    </div>
+
+    <div class="item" onclick="location.href='policy.html'">
+        <i class="fa-solid fa-shield"></i>
+        Privacy Policy
+    </div>
+
+</div>
+
+<!-- LOGOUT -->
+<div class="logout" id="logoutBtn">
+    Logout
+</div>
+
+<script>
+
+/* BACK */
+document.querySelector(".back-btn")
+.addEventListener("click", () => history.back());
+
+/* USER */
+window.addEventListener("DOMContentLoaded", function(){
+
+    let user = localStorage.getItem("username");
+
+    if(user){
+        document.getElementById("username").innerText = "Hello 👋 " + user;
+    }
+
+});
+
+/* LOGOUT */
+document.getElementById("logoutBtn")
+.addEventListener("click", function(){
+
+    localStorage.clear();
+    window.location.href = "index.html";
+
+});
+
+</script>
+
+</body>
+</html>

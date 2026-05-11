@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Wishlist</title>
+
+<!-- ICONS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Poppins, sans-serif;
+    background:#f1f3f6;
+}
+
+/* ================= NAVBAR ================= */
+
+.header{
+    height:52px;
+    background:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    position:sticky;
+    top:0;
+
+    border-bottom:1px solid #eee;
+    padding:0 14px;
+}
+
+.back-btn{
+    position:absolute;
+    left:14px;
+    font-size:20px;
+    cursor:pointer;
+}
+
+.header-title{
+    font-size:15px;
+    font-weight:600;
+}
+
+.header-right{
+    position:absolute;
+    right:14px;
+    display:flex;
+    gap:16px;
+}
+
+.header-right i{
+    font-size:18px;
+    cursor:pointer;
+}
+
+/* ================= GRID ================= */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    padding:10px;
+}
+
+/* CARD */
+.card{
+    background:#fff;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 2px 6px rgba(0,0,0,0.05);
+}
+
+.card img{
+    width:100%;
+    height:140px;
+    object-fit:cover;
+}
+
+.info{
+    padding:8px;
+}
+
+.name{
+    font-size:13px;
+    font-weight:600;
+}
+
+.price{
+    font-size:14px;
+    font-weight:700;
+    margin-top:4px;
+}
+
+/* EMPTY */
+.empty{
+    text-align:center;
+    margin-top:40px;
+    color:#777;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="header">
+
+    <i class="fa-solid fa-arrow-left back-btn"></i>
+
+    <div class="header-title">Wishlist</div>
+
+    <div class="header-right">
+
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+
+        <i class="fa-solid fa-bag-shopping cart-icon"></i>
+
+    </div>
+
+</div>
+
+<!-- PRODUCTS -->
+<div class="grid" id="wishlistGrid"></div>
+
+<div class="empty" id="emptyMsg" style="display:none;">
+    No items in wishlist
+</div>
+
+<script>
+
+/* BACK */
+document.querySelector(".back-btn")
+.addEventListener("click", function(){
+    history.back();
+});
+
+/* SEARCH */
+document.querySelector(".search-icon")
+.addEventListener("click", function(){
+    window.location.href = "search.html";
+});
+
+/* CART */
+document.querySelector(".cart-icon")
+.addEventListener("click", function(){
+    window.location.href = "cart.html";
+});
+
+/* LOAD WISHLIST */
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+const grid = document.getElementById("wishlistGrid");
+const empty = document.getElementById("emptyMsg");
+
+function renderWishlist(){
+
+    grid.innerHTML = "";
+
+    if(wishlist.length === 0){
+        empty.style.display = "block";
+        return;
+    }
+
+    empty.style.display = "none";
+
+    wishlist.forEach(item => {
+
+        grid.innerHTML += `
+        <div class="card">
+
+            <img src="${item.image}">
+
+            <div class="info">
+
+                <div class="name">${item.name}</div>
+
+                <div class="price">₹${item.price}</div>
+
+            </div>
+
+        </div>
+        `;
+
+    });
+
+}
+
+renderWishlist();
+
+</script>
+
+</body>
+</html>
