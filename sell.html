@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Sell on KHUSINDIA</title>
+
+<!-- ICONS -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+rel="stylesheet">
+
+<style>
+
+:root{
+
+    --theme:#4A0D2A;
+    --light:#F8EEF3;
+    --text:#111;
+    --sub:#666;
+    --border:#eee;
+    --bg:#f5f5f5;
+
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+}
+
+/* NAVBAR */
+
+.navbar{
+    height:56px;
+    background:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 16px;
+
+    border-bottom:1px solid var(--border);
+
+    position:sticky;
+    top:0;
+    z-index:999;
+}
+
+.nav-left i,
+.nav-right i{
+    font-size:19px;
+    cursor:pointer;
+    color:var(--theme);
+}
+
+.nav-title{
+    font-size:16px;
+    font-weight:600;
+    color:var(--theme);
+}
+
+/* HERO */
+
+.hero{
+    background:linear-gradient(
+    135deg,
+    #4A0D2A,
+    #7A1E48
+    );
+
+    padding:34px 18px;
+
+    color:#fff;
+}
+
+.hero h1{
+    font-size:30px;
+    line-height:1.4;
+
+    font-weight:700;
+}
+
+.hero p{
+    margin-top:12px;
+
+    font-size:13px;
+    line-height:1.8;
+
+    color:#f3dce7;
+}
+
+.hero-btn{
+    margin-top:22px;
+
+    width:100%;
+    height:50px;
+
+    border:none;
+    border-radius:14px;
+
+    background:#fff;
+    color:var(--theme);
+
+    font-size:14px;
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+/* SECTION */
+
+.section{
+    padding:14px;
+}
+
+/* CARD */
+
+.card{
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    margin-bottom:14px;
+}
+
+.section-title{
+    font-size:18px;
+    font-weight:600;
+
+    margin-bottom:16px;
+
+    color:var(--theme);
+}
+
+/* BENEFITS */
+
+.benefit{
+    display:flex;
+    align-items:flex-start;
+
+    gap:14px;
+
+    margin-bottom:18px;
+}
+
+.benefit:last-child{
+    margin-bottom:0;
+}
+
+.icon-box{
+    width:48px;
+    height:48px;
+
+    min-width:48px;
+
+    border-radius:14px;
+
+    background:var(--light);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.icon-box i{
+    font-size:18px;
+    color:var(--theme);
+}
+
+.benefit-text h4{
+    font-size:14px;
+    font-weight:600;
+}
+
+.benefit-text p{
+    margin-top:5px;
+
+    font-size:12px;
+    line-height:1.7;
+
+    color:var(--sub);
+}
+
+/* STEPS */
+
+.step{
+    display:flex;
+    align-items:flex-start;
+
+    gap:14px;
+
+    margin-bottom:18px;
+}
+
+.step:last-child{
+    margin-bottom:0;
+}
+
+.step-number{
+    width:36px;
+    height:36px;
+
+    min-width:36px;
+
+    border-radius:50%;
+
+    background:var(--theme);
+    color:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:13px;
+    font-weight:600;
+}
+
+.step-text h4{
+    font-size:14px;
+    font-weight:600;
+}
+
+.step-text p{
+    margin-top:5px;
+
+    font-size:12px;
+    line-height:1.7;
+
+    color:var(--sub);
+}
+
+/* FORM */
+
+.form-group{
+    margin-bottom:16px;
+}
+
+.form-group label{
+    display:block;
+
+    font-size:13px;
+    font-weight:500;
+
+    margin-bottom:8px;
+}
+
+.form-group input,
+.form-group textarea{
+
+    width:100%;
+
+    border:1px solid #ddd;
+
+    border-radius:14px;
+
+    padding:14px;
+
+    font-size:13px;
+
+    font-family:'Poppins',sans-serif;
+
+    outline:none;
+
+    transition:0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+
+    border-color:var(--theme);
+
+}
+
+.form-group textarea{
+    resize:none;
+    height:100px;
+}
+
+.submit-btn{
+    width:100%;
+    height:50px;
+
+    border:none;
+    border-radius:14px;
+
+    background:var(--theme);
+    color:#fff;
+
+    font-size:14px;
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+/* FOOTER */
+
+.footer{
+    padding:28px 16px 34px;
+
+    text-align:center;
+
+    font-size:12px;
+    color:#777;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+    <div class="nav-left">
+
+        <i class="fa-solid fa-arrow-left"
+        onclick="goBack()"></i>
+
+    </div>
+
+    <div class="nav-title">
+        Sell on KHUSINDIA
+    </div>
+
+    <div class="nav-right">
+
+        <i class="fa-solid fa-house"
+        onclick="window.location.href='index.html'"></i>
+
+    </div>
+
+</div>
+
+<!-- HERO -->
+
+<div class="hero">
+
+    <h1>
+        Grow Your Business<br>
+        with KHUSINDIA
+    </h1>
+
+    <p>
+        Reach thousands of customers
+        across India and start selling
+        your products with ease.
+    </p>
+
+    <button class="hero-btn"
+    onclick="scrollToForm()">
+
+        Become a Seller
+
+    </button>
+
+</div>
+
+<!-- BENEFITS -->
+
+<div class="section">
+
+    <div class="card">
+
+        <div class="section-title">
+            Why Sell With Us?
+        </div>
+
+        <div class="benefit">
+
+            <div class="icon-box">
+                <i class="fa-solid fa-users"></i>
+            </div>
+
+            <div class="benefit-text">
+
+                <h4>Reach More Customers</h4>
+
+                <p>
+                    Expand your business and
+                    connect with buyers from
+                    all across India.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="benefit">
+
+            <div class="icon-box">
+                <i class="fa-solid fa-wallet"></i>
+            </div>
+
+            <div class="benefit-text">
+
+                <h4>Secure Payments</h4>
+
+                <p>
+                    Get smooth and reliable
+                    payment settlements directly
+                    into your bank account.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="benefit">
+
+            <div class="icon-box">
+                <i class="fa-solid fa-box"></i>
+            </div>
+
+            <div class="benefit-text">
+
+                <h4>Easy Product Management</h4>
+
+                <p>
+                    Add, manage and update
+                    products with a simple
+                    seller workflow.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- STEPS -->
+
+<div class="section">
+
+    <div class="card">
+
+        <div class="section-title">
+            Start in 3 Easy Steps
+        </div>
+
+        <div class="step">
+
+            <div class="step-number">
+                1
+            </div>
+
+            <div class="step-text">
+
+                <h4>Register</h4>
+
+                <p>
+                    Fill the registration form
+                    with your business details.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="step">
+
+            <div class="step-number">
+                2
+            </div>
+
+            <div class="step-text">
+
+                <h4>Verify Documents</h4>
+
+                <p>
+                    Submit required documents
+                    for seller verification.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="step">
+
+            <div class="step-number">
+                3
+            </div>
+
+            <div class="step-text">
+
+                <h4>Start Selling</h4>
+
+                <p>
+                    Upload products and start
+                    receiving orders online.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FORM -->
+
+<div class="section"
+id="sellerForm">
+
+    <div class="card">
+
+        <div class="section-title">
+            Seller Registration
+        </div>
+
+        <div class="form-group">
+
+            <label>Full Name</label>
+
+            <input type="text"
+            placeholder="Enter your full name">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Business Name</label>
+
+            <input type="text"
+            placeholder="Enter business name">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Mobile Number</label>
+            <input type="tel" id="mobile" placeholder="Enter mobile number">
+
+        </div>
+
+<!-- CREATE PASSWORD -->
+
+<div class="form-group">
+
+    <label>Create Password</label>
+
+    <input type="password"
+    id="passwordInput"
+    placeholder="Create password">
+
+</div>
+
+<!-- CONFIRM PASSWORD -->
+
+<div class="form-group">
+
+    <label>Confirm Password</label>
+
+    <input type="password"
+    id="confirmPasswordInput"
+    placeholder="Confirm password">
+
+</div>
+
+        <div class="form-group">
+
+            <label>Email Address</label>
+
+                      <input type="email" id="email" placeholder="Enter email address">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Business Category</label>
+
+            <input type="text"
+            placeholder="Fashion, Electronics etc.">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Tell Us About Your Business</label>
+
+            <textarea
+            placeholder="Write something about your business"></textarea>
+
+        </div>
+
+        <button class="submit-btn">
+
+            Submit Request
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+    © 2026 KHUSINDIA. All Rights Reserved.
+
+</div>
+
+<script>
+
+/* BACK */
+function goBack(){
+    if(history.length > 1){
+        history.back();
+    } else {
+        window.location.href = "index.html";
+    }
+}
+
+/* SCROLL */
+function scrollToForm(){
+    document.getElementById("sellerForm")
+    .scrollIntoView({ behavior: "smooth" });
+}
+
+/* ================= OTP STORAGE ================= */
+let mobileOTP = "";
+let emailOTP = "";
+
+/* ================= ELEMENTS ================= */
+const mobileInput = document.querySelector('input[type="tel"]');
+const emailInput = document.querySelector('input[type="email"]');
+const submitBtn = document.querySelector(".submit-btn");
+
+/* ================= WRAPPER SAFE ================= */
+function wrap(input){
+    const div = document.createElement("div");
+    div.style.position = "relative";
+    div.style.marginBottom = "12px";
+
+    input.parentNode.insertBefore(div, input);
+    div.appendChild(input);
+
+    return div;
+}
+
+const mobileWrap = wrap(mobileInput);
+const emailWrap = wrap(emailInput);
+
+/* ================= BUTTON STYLE ================= */
+const btnStyle = `
+position:absolute;
+right:10px;
+top:50%;
+transform:translateY(-50%);
+display:none;
+font-size:12px;
+padding:4px 7px;
+border:none;
+background:#4A0D2A;
+color:#fff;
+border-radius:6px;
+cursor:pointer;
+`;
+
+/* ================= MOBILE OTP UI ================= */
+const mobileBtn = document.createElement("button");
+mobileBtn.innerText = "Send OTP";
+mobileBtn.type = "button";
+mobileBtn.style.cssText = btnStyle;
+
+const mobileBox = document.createElement("input");
+mobileBox.placeholder = "Enter Mobile OTP";
+mobileBox.type = "text";
+mobileBox.style.cssText = "display:none;margin-top:8px;width:100%;padding:12px;border:1px solid #ddd;border-radius:12px;";
+
+mobileWrap.appendChild(mobileBtn);
+mobileWrap.appendChild(mobileBox);
+
+/* ================= EMAIL OTP UI ================= */
+const emailBtn = document.createElement("button");
+emailBtn.innerText = "Send OTP";
+emailBtn.type = "button";
+emailBtn.style.cssText = btnStyle;
+
+const emailBox = document.createElement("input");
+emailBox.placeholder = "Enter Email OTP";
+emailBox.type = "text";
+emailBox.style.cssText = mobileBox.style.cssText;
+
+emailWrap.appendChild(emailBtn);
+emailWrap.appendChild(emailBox);
+
+/* ================= MOBILE CHECK ================= */
+mobileInput.addEventListener("input", function(){
+
+    if(this.value.trim().length === 10){
+        mobileBtn.style.display = "block";
+    } else {
+        mobileBtn.style.display = "none";
+        mobileBox.style.display = "none";
+    }
+
+});
+
+/* ================= EMAIL CHECK ================= */
+emailInput.addEventListener("input", function(){
+
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(pattern.test(this.value.trim())){
+        emailBtn.style.display = "block";
+    } else {
+        emailBtn.style.display = "none";
+        emailBox.style.display = "none";
+    }
+
+});
+
+/* ================= SEND MOBILE OTP ================= */
+mobileBtn.addEventListener("click", function(){
+
+    mobileOTP = Math.floor(100000 + Math.random() * 900000);
+
+    alert("Mobile OTP Sent: " + mobileOTP);
+
+    mobileBox.style.display = "block";
+});
+
+/* ================= SEND EMAIL OTP ================= */
+emailBtn.addEventListener("click", function(){
+
+    emailOTP = Math.floor(100000 + Math.random() * 900000);
+
+    alert("Email OTP Sent: " + emailOTP);
+
+    emailBox.style.display = "block";
+});
+
+/* ================= SUBMIT ================= */
+submitBtn.addEventListener("click", function(){
+
+    if(mobileInput.value.trim().length !== 10){
+        alert("Enter valid mobile number");
+        return;
+    }
+
+    if(emailInput.value.trim() === ""){
+        alert("Enter email");
+        return;
+    }
+
+    if(mobileBox.value.trim() != mobileOTP){
+        alert("Invalid Mobile OTP");
+        return;
+    }
+
+    if(emailBox.value.trim() != emailOTP){
+        alert("Invalid Email OTP");
+        return;
+    }
+
+    submitBtn.innerText = "Request Submitted";
+    submitBtn.disabled = true;
+    submitBtn.style.background = "#1c7c45";
+
+    alert("Seller request submitted successfully");
+
+    setTimeout(()=>{
+        window.location.href = "index.html";
+    },2000);
+
+});
+
+</script>
+</body>
+</html>
