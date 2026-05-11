@@ -9,6 +9,51 @@
 
 <style>
 
+    /* =========================
+   NAVBAR
+========================= */
+
+.top-navbar{
+    height:56px;
+    background:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 16px;
+
+    border-bottom:1px solid #eee;
+
+    position:sticky;
+    top:0;
+    z-index:999;
+}
+
+.nav-left i{
+    font-size:20px;
+    cursor:pointer;
+    color:#111;
+}
+
+.nav-title{
+    font-size:16px;
+    font-weight:600;
+    color:#111;
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.nav-right i{
+    font-size:19px;
+    cursor:pointer;
+    color:#111;
+}
+
 body{
     margin:0;
     font-family:Poppins,sans-serif;
@@ -79,6 +124,37 @@ body{
 
 <!-- HEADER -->
 <div class="header">
+    <!-- TOP NAVBAR -->
+<div class="top-navbar">
+
+    <!-- BACK -->
+    <div class="nav-left">
+
+        <i class="fa-solid fa-arrow-left"
+        onclick="goBack()"></i>
+
+    </div>
+
+    <!-- TITLE -->
+    <div class="nav-title">
+        My Account
+    </div>
+
+    <!-- RIGHT -->
+    <div class="nav-right">
+
+        <i class="fa-solid fa-magnifying-glass"
+        onclick="window.location.href='search.html'"></i>
+
+        <i class="fa-regular fa-heart"
+        onclick="window.location.href='wishlist.html'"></i>
+
+        <i class="fa-solid fa-cart-shopping"
+        onclick="window.location.href='cart.html'"></i>
+
+    </div>
+
+</div>
 
     <div id="userBox" class="user-box">Hello User 👋</div>
     <div class="sub">Manage your account</div>
@@ -207,6 +283,22 @@ function go(page){
 function logout(){
     localStorage.removeItem("username");
     location.reload();
+}
+
+    /* BACK BUTTON */
+
+function goBack(){
+
+    if(history.length > 1){
+
+        history.back();
+
+    }else{
+
+        window.location.href = "index.html";
+
+    }
+
 }
 
 </script>
