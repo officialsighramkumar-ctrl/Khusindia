@@ -1,131 +1,146 @@
 /* =========================
-   BANNER SLIDER
+   GLOBAL CLICK HANDLER (NAVBAR FIX)
 ========================= */
 
-const track = document.querySelector(".banner-track");
-const slides = document.querySelectorAll(".banner-track img");
-const dotsContainer = document.getElementById("dots");
+document.addEventListener("click", function (e) {
 
-let index = 0;
-const total = slides.length;
+    /* BAG ICON */
+    document.addEventListener("click", function (e) {
 
-/* 🔥 CREATE DOTS */
-dotsContainer.innerHTML = "";
+    const bag = e.target.closest(".fa-bag-shopping");
 
-for (let i = 0; i < total; i++) {
-    let dot = document.createElement("span");
-    dotsContainer.appendChild(dot);
-}
+    if (!bag) return;
 
-const dots = document.querySelectorAll("#dots span");
+    e.preventDefault();
 
-function updateDots() {
-    dots.forEach(d => d.classList.remove("active"));
-    if (dots[index]) dots[index].classList.add("active");
-}
+    window.location.href = "cart.html";
 
-function goToSlide(i) {
-    index = i;
-
-    track.scrollTo({
-        left: track.clientWidth * i,
-        behavior: "smooth"
-    });
-
-    updateDots();
-}
-
-/* 🔥 AUTO SLIDE (3 sec) */
-setInterval(() => {
-    index = (index + 1) % total;
-    goToSlide(index);
-}, 3000);
-
-/* 🔥 MANUAL SCROLL SYNC */
-track.addEventListener("scroll", () => {
-    clearTimeout(track.timer);
-
-    track.timer = setTimeout(() => {
-        index = Math.round(track.scrollLeft / track.clientWidth);
-        updateDots();
-    }, 100);
 });
 
-/* INIT */
-updateDots();
+    /* SEARCH ICON */
+    if (e.target.closest(".fa-magnifying-glass")) {
+        window.location.href = "search.html";
+    }
 
-/* SEARCH */
-function goToSearch() {
-    window.location.href = "search.html";
-}
+    /* BACK BUTTON */
+    if (e.target.closest(".back-btn")) {
+
+        if (window.history.length > 1) {
+            window.history.back();
+        } else {
+            window.location.href = "index.html";
+        }
+
+    }
+
+});
 
 
-/* OPEN MENU (SMART SWITCH) */
+/* =========================
+   BANNER SLIDER (FIXED SINGLE VERSION)
+========================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const track = document.getElementById("bannerTrack");
+    const dotsContainer = document.getElementById("dots");
+
+    if (!track || !dotsContainer) return;
+
+    const slides = track.querySelectorAll("img");
+    let index = 0;
+    const total = slides.length;
+
+    if (total === 0) return;
+
+    /* CREATE DOTS */
+    dotsContainer.innerHTML = "";
+
+    for (let i = 0; i < total; i++) {
+        const dot = document.createElement("span");
+        dotsContainer.appendChild(dot);
+    }
+
+    const dots = dotsContainer.querySelectorAll("span");
+
+    function update() {
+
+        track.scrollTo({
+            left: index * track.clientWidth,
+            behavior: "smooth"
+        });
+
+        dots.forEach(d => d.classList.remove("active"));
+        if (dots[index]) dots[index].classList.add("active");
+    }
+
+    /* AUTO SLIDE */
+    setInterval(() => {
+        index = (index + 1) % total;
+        update();
+    }, 3000);
+
+    /* MANUAL SCROLL SYNC */
+    track.addEventListener("scroll", () => {
+
+        clearTimeout(track.timer);
+
+        track.timer = setTimeout(() => {
+
+            index = Math.round(track.scrollLeft / track.clientWidth);
+            update();
+
+        }, 100);
+
+    });
+
+    update();
+
+});
+
+
+/* =========================
+   MENU SYSTEM
+========================= */
+
 function openMenu() {
 
     const overlay = document.getElementById("menuOverlay");
 
     if (window.innerWidth >= 768) {
-        document.getElementById("sideMenuDesktop").classList.add("active");
+        document.getElementById("sideMenuDesktop")?.classList.add("active");
     } else {
-        document.getElementById("sideMenuMobile").classList.add("active");
+        document.getElementById("sideMenuMobile")?.classList.add("active");
     }
 
     if (overlay) overlay.classList.add("active");
+
 }
 
 
 /* CLOSE MENU */
+document.addEventListener("click", function (e) {
 
-document.addEventListener("click", function(e){
+    const mobileMenu = document.getElementById("sideMenuMobile");
+    const desktopMenu = document.getElementById("sideMenuDesktop");
+    const menuBtn = document.querySelector(".ri-menu-line");
 
-    const mobileMenu =
-    document.getElementById("sideMenuMobile");
+    if (mobileMenu && mobileMenu.classList.contains("active")) {
 
-    const desktopMenu =
-    document.getElementById("sideMenuDesktop");
-
-    const menuBtn =
-    document.querySelector(".ri-menu-line");
-
-    /* MOBILE MENU */
-    if(
-        mobileMenu &&
-        mobileMenu.classList.contains("active")
-    ){
-
-        if(
-            !mobileMenu.contains(e.target) &&
-            !menuBtn.contains(e.target)
-        ){
-
+        if (!mobileMenu.contains(e.target) && !menuBtn?.contains(e.target)) {
             mobileMenu.classList.remove("active");
-
         }
 
     }
 
-    /* DESKTOP MENU */
-    if(
-        desktopMenu &&
-        desktopMenu.classList.contains("active")
-    ){
+    if (desktopMenu && desktopMenu.classList.contains("active")) {
 
-        if(
-            !desktopMenu.contains(e.target)
-        ){
+        if (!desktopMenu.contains(e.target)) {
 
             desktopMenu.classList.remove("active");
 
-            const overlay =
-            document.getElementById(
-                "menuOverlay"
-            );
-
-            if(overlay){
-                overlay.style.display =
-                "none";
-            }
+            const overlay = document.getElementById("menuOverlay");
+            if (overlay) overlay.classList.remove("active");
 
         }
 
@@ -133,29 +148,33 @@ document.addEventListener("click", function(e){
 
 });
 
-/* LOGIN BASED ITEM */
+
+/* =========================
+   LOGIN BASED UI
+========================= */
+
 document.addEventListener("DOMContentLoaded", function () {
 
-    let user = localStorage.getItem("username");
-    let myOrders = document.getElementById("myOrders");
+    const user = localStorage.getItem("username");
+    const myOrders = document.getElementById("myOrders");
 
     if (myOrders) {
-        myOrders.style.display =
-            (user && user.trim() !== "") ? "block" : "none";
+        myOrders.style.display = user ? "block" : "none";
     }
 
 });
 
-document.addEventListener("click", (e) => {
-    if (!e.target.closest(".desktop-search")) {
-        box.style.display = "none";
-    }
-});
 
-const input = document.getElementById("desktopSearchInput");
-const box = document.getElementById("searchHistoryBox");
+/* =========================
+   DESKTOP SEARCH HISTORY
+========================= */
 
-if (input && box) {
+document.addEventListener("DOMContentLoaded", function () {
+
+    const input = document.getElementById("desktopSearchInput");
+    const box = document.getElementById("searchHistoryBox");
+
+    if (!input || !box) return;
 
     function getData() {
         return JSON.parse(localStorage.getItem("searchHistory")) || [];
@@ -166,15 +185,17 @@ if (input && box) {
     }
 
     function render() {
-        let data = getData();
+
+        const data = getData();
         box.innerHTML = "";
 
         data.slice(0, 10).forEach((item, index) => {
-            let div = document.createElement("div");
+
+            const div = document.createElement("div");
 
             div.innerHTML = `
                 <span>${item}</span>
-                <button onclick="deleteItem(${index})">✖</button>
+                <button>✖</button>
             `;
 
             div.querySelector("span").onclick = () => {
@@ -182,18 +203,20 @@ if (input && box) {
                 box.style.display = "none";
             };
 
-            box.appendChild(div);
-        });
-    }
+            div.querySelector("button").onclick = () => {
+                data.splice(index, 1);
+                setData(data);
+                render();
+            };
 
-    window.deleteItem = function(index) {
-        let data = getData();
-        data.splice(index, 1);
-        setData(data);
-        render();
+            box.appendChild(div);
+
+        });
+
     }
 
     function save(value) {
+
         if (!value.trim()) return;
 
         let data = getData();
@@ -212,76 +235,52 @@ if (input && box) {
     });
 
     input.addEventListener("keydown", (e) => {
+
         if (e.key === "Enter") {
             save(input.value);
             render();
         }
+
     });
 
     document.addEventListener("click", (e) => {
+
         if (!e.target.closest(".desktop-search")) {
             box.style.display = "none";
         }
+
     });
-
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    const track = document.getElementById("bannerTrack");
-    const images = track.querySelectorAll("img");
-    const dotsContainer = document.getElementById("dots");
-
-    let index = 0;
-    const total = images.length;
-
-    // safety check
-    if (!track || !dotsContainer || total === 0) return;
-
-    // CREATE DOTS
-    dotsContainer.innerHTML = "";
-    for (let i = 0; i < total; i++) {
-        const dot = document.createElement("span");
-        dotsContainer.appendChild(dot);
-    }
-
-    const dots = dotsContainer.querySelectorAll("span");
-
-    function render() {
-        // move slide
-        track.scrollTo({
-            left: index * track.clientWidth,
-            behavior: "smooth"
-        });
-
-        // update dots
-        dots.forEach(d => d.classList.remove("active"));
-        if (dots[index]) dots[index].classList.add("active");
-    }
-
-    // AUTO SLIDE
-    setInterval(() => {
-        index = (index + 1) % total;
-        render();
-    }, 3000);
-
-    // MANUAL SCROLL SYNC
-    track.addEventListener("scroll", () => {
-        clearTimeout(track.timer);
-
-        track.timer = setTimeout(() => {
-            index = Math.round(track.scrollLeft / track.clientWidth);
-            render();
-        }, 80);
-    });
-
-    // INIT
-    render();
 
 });
 
 
+/* =========================
+   SEARCH FUNCTION
+========================= */
 
-function openCategory() {
-    window.location.href = "categories.html";
+function goToSearch() {
+    window.location.href = "search.html";
 }
+
+document.addEventListener("click", function (e) {
+
+    const bag = e.target.closest(".cart-icon");
+
+    if (!bag) return;
+
+    e.preventDefault();
+    e.stopPropagation(); // 🔥 IMPORTANT
+
+    window.location.href = "cart.html";
+
+});
+
+document.addEventListener("click", function (e) {
+
+    const heart = e.target.closest(".fa-heart, .ri-heart-line");
+
+    if (!heart) return;
+
+    window.location.href = "wishlist.html";
+
+});
