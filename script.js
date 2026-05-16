@@ -284,3 +284,102 @@ document.addEventListener("click", function (e) {
     window.location.href = "wishlist.html";
 
 });
+
+/* =========================
+   CLOSE ALL MENUS
+========================= */
+
+function closeAllMenus(){
+
+    document
+    .querySelectorAll(".dropdown-menu")
+    .forEach(menu => {
+
+        menu.classList.remove("active");
+
+    });
+
+    document
+    .querySelectorAll(".filter-btn")
+    .forEach(btn => {
+
+        btn.classList.remove("active");
+
+    });
+}
+
+/* =========================
+   TOGGLE MENU
+========================= */
+
+function toggleMenu(menuId, button){
+
+    let menu =
+    document.getElementById(menuId);
+
+    let isOpen =
+    menu.classList.contains("active");
+
+    closeAllMenus();
+
+    if(!isOpen){
+
+        menu.classList.add("active");
+
+        button.classList.add("active");
+    }
+}
+
+/* =========================
+   SORT
+========================= */
+
+function toggleSortMenu(el){
+
+    toggleMenu("sortMenu", el);
+}
+
+/* CATEGORY */
+
+function toggleCategoryMenu(el){
+
+    toggleMenu("categoryMenu", el);
+}
+
+/* GENDER */
+
+function toggleGenderMenu(el){
+
+    toggleMenu("genderMenu", el);
+}
+
+/* FILTER */
+
+function openFilters(){
+
+    alert("Filters panel coming soon");
+}
+
+/* SORT FUNCTION */
+
+function sortProducts(type){
+
+    alert(type + " sorting applied");
+
+    closeAllMenus();
+}
+
+/* CLICK OUTSIDE CLOSE */
+
+document.addEventListener("click", function(e){
+
+    if(
+        !e.target.closest(".filter-btn")
+        &&
+        !e.target.closest(".dropdown-menu")
+    ){
+
+        closeAllMenus();
+    }
+
+});
