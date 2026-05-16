@@ -707,17 +707,6 @@ body {
   background: #f1f3f6;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 /* RIGHT SECTION */
 .right {
     flex: 1;
@@ -772,6 +761,8 @@ body {
     margin-top: 8px;
     color: #333;
 }
+}
+
 
 /* PRODUCT GRID */
 
